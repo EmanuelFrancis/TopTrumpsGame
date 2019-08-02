@@ -1,0 +1,206 @@
+﻿<playercards xmlns="urn:newcards-schema">
+  
+    <player>
+      <id>1</id>
+      <name>Thierry Henry</name>
+      <apps>258</apps>
+      <goals>175</goals>
+      <assists>74</assists>
+      <teams>1</teams>
+      <prems>2</prems>
+      <bookings>30</bookings>
+    </player>
+    <player>
+    <id>2</id>
+      <name>Ryan Giggs</name>
+      <apps>632</apps>
+      <goals>109</goals>
+      <assists>162</assists>
+      <teams>1</teams>
+      <prems>13</prems>
+      <bookings>37</bookings>
+    </player>
+    <player>
+      <id>3</id>
+      <name>Frank Lampard</name>
+      <apps>609</apps>
+      <goals>177</goals>
+      <assists>102</assists>
+      <teams>2</teams>
+      <prems>3</prems>
+      <bookings>61</bookings>
+    </player>
+    <player>
+      <id>4</id>
+      <name>Steven Gerrard</name>
+      <apps>504</apps>
+      <goals>120</goals>
+      <assists>92</assists>
+      <teams>1</teams>
+      <prems>0</prems>
+      <bookings>67</bookings>
+    </player>
+    <player>
+      <id>5</id>
+      <name>Didier Drogba</name>
+      <apps>254</apps>
+      <goals>104</goals>
+      <assists>54</assists>
+      <teams>1</teams>
+      <prems>4</prems>
+      <bookings>46</bookings>
+    </player>
+    <player>
+      <id>6</id>
+      <name>Wayne Rooney</name>
+      <apps>491</apps>
+      <goals>208</goals>
+      <assists>103</assists>
+      <teams>2</teams>
+      <prems>5</prems>
+      <bookings>105</bookings>
+    </player>
+  <player>
+    <id>7</id>
+    <name>Paul Scholes</name>
+    <apps>499</apps>
+    <goals>107</goals>
+    <assists>55</assists>
+    <teams>1</teams>
+    <prems>11</prems>
+    <bookings>101</bookings>
+  </player>
+  <player>
+    <id>8</id>
+    <name>Dennis Bergkamp</name>
+    <apps>315</apps>
+    <goals>87</goals>
+    <assists>94</assists>
+    <teams>1</teams>
+    <prems>3</prems>
+    <bookings>41</bookings>
+  </player>
+  <player>
+    <id>9</id>
+    <name>Alan Shearer</name>
+    <apps>441</apps>
+    <goals>260</goals>
+    <assists>64</assists>
+    <teams>2</teams>
+    <prems>1</prems>
+    <bookings>43</bookings>
+  </player>
+  <player>
+  <id>10</id>
+  <name>Eric Cantona</name>
+  <apps>156</apps>
+  <goals>70</goals>
+  <assists>56</assists>
+  <teams>2</teams>
+  <prems>4</prems>
+  <bookings>18</bookings>
+  </player>
+  <player>
+    <id>11</id>
+    <name>Dwight Yorke</name>
+    <apps>357</apps>
+    <goals>123</goals>
+    <assists>50</assists>
+    <teams>5</teams>
+    <prems>3</prems>
+    <bookings>25</bookings>
+  </player>
+  <player>
+    <id>12</id>
+    <name>Gianfranco Zola</name>
+    <apps>229</apps>
+    <goals>59</goals>
+    <assists>42</assists>
+    <teams>1</teams>
+    <prems>0</prems>
+    <bookings>5</bookings>
+  </player>
+  <player>
+    <id>13</id>
+    <name>Ruud Van Nistlerooy</name>
+    <apps>150</apps>
+    <goals>95</goals>
+    <assists>14</assists>
+    <teams>1</teams>
+    <prems>1</prems>
+    <bookings>16</bookings>
+  </player>
+  <player>
+    <id>14</id>
+    <name>Andy Cole</name>
+    <apps>414</apps>
+    <goals>187</goals>
+    <assists>73</assists>
+    <teams>7</teams>
+    <prems>5</prems>
+    <bookings>46</bookings>
+  </player>
+  <player>
+    <id>15</id>
+    <name>Robbie Fowler</name>
+    <apps>379</apps>
+    <goals>163</goals>
+    <assists>39</assists>
+    <teams>4</teams>
+    <prems>0</prems>
+    <bookings>29</bookings>
+  </player>
+  <player>
+    <id>16</id>
+    <name>Michael Owen</name>
+    <apps>326</apps>
+    <goals>150</goals>
+    <assists>31</assists>
+    <teams>4</teams>
+    <prems>1</prems>
+    <bookings>11</bookings>
+  </player>
+  <player>
+    <id>17</id>
+    <name>Robin Van Persie</name>
+    <apps>280</apps>
+    <goals>144</goals>
+    <assists>53</assists>
+    <teams>2</teams>
+    <prems>1</prems>
+    <bookings>48</bookings>
+  </player>
+  <player>
+    <id>18</id>
+    <name>Les Ferdinand</name>
+    <apps>351</apps>
+    <goals>149</goals>
+    <assists>49</assists>
+    <teams>6</teams>
+    <prems>0</prems>
+    <bookings>46</bookings>
+  </player>
+  <player>
+    <id>19</id>
+    <name>Teddy Sheringham</name>
+    <apps>418</apps>
+    <goals>146</goals>
+    <assists>76</assists>
+    <teams>6</teams>
+    <prems>3</prems>
+    <bookings>43</bookings>
+  </player>
+  <player>
+    <id>20</id>
+    <name>Nicolas Anelka</name>
+    <apps>346</apps>
+    <goals>125</goals>
+    <assists>48</assists>
+    <teams>6</teams>
+    <prems>2</prems>
+    <bookings>6</bookings>
+  </player>
+  
+
+ 
+</playercards>
