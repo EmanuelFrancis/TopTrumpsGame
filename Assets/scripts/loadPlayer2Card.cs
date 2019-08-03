@@ -88,8 +88,8 @@ public class loadPlayer2Card : MonoBehaviour
 
       //  card.transform.parent = controller.playerInstance02.transform;
         GameObject card02 = (GameObject)Instantiate(card);
-        card02.name = name.InnerXml;
-        card02.transform.parent = controller.playerInstance02.transform;
+        card02.name = "P2Card";
+        card02.transform.parent = controller.P2mainCard.transform;
         card02.AddComponent<Canvas>();
         card02.AddComponent<CanvasScaler>();
         card02.AddComponent<GraphicRaycaster>();

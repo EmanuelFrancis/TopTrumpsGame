@@ -55,6 +55,9 @@ public class controller : MonoBehaviour
 
     public static int arrayListNum = 0; /* Receives and holds the picked array slot for the picked attribute to compare from p1pickedCard() */
 
+    public static GameObject P1mainCard;
+    public static GameObject P2mainCard;
+
 
     void Start()
     {
@@ -87,9 +90,9 @@ public class controller : MonoBehaviour
         playerInstance01.AddComponent<GraphicRaycaster>();   /**/
 
 
-        rectTransform = playerInstance01.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-20, 0, 0);
-        rectTransform.sizeDelta = new Vector2(350, 490);
+     //   rectTransform = playerInstance01.GetComponent<RectTransform>();
+      //  rectTransform.localPosition = new Vector3(-20, 0, 0);
+     //   rectTransform.sizeDelta = new Vector2(350, 490);
 
 
         playerInstance02 = (GameObject)Instantiate(humanPlayer);
@@ -101,12 +104,14 @@ public class controller : MonoBehaviour
         playerInstance02.AddComponent<GraphicRaycaster>();   /**/
 
 
-        rectTransform = playerInstance02.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(20, 0, 0);
-        rectTransform.sizeDelta = new Vector2(350, 490);
+      //  rectTransform = playerInstance02.GetComponent<RectTransform>();
+     //   rectTransform.localPosition = new Vector3(20, 0, 0);
+     //   rectTransform.sizeDelta = new Vector2(350, 490);
 
         ActiveplayerInstance = (GameObject)Instantiate(humanPlayer); /* creates an instance of the humanPlayer GO called playerInstance01 */
         ActiveplayerInstance.name = "ActivePlayer"; /* Sets the name of the p1 instance to whatever has been specified at Player1Name */
+
+
 
 
       //  playerInstance01.transform.parent = humanPlayer.transform;
@@ -144,8 +149,14 @@ public class controller : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-   
+
+            //  Destroy(loadPlayer1Card.card);
+              Destroy(GameObject.Find("p1MainCard"));
+              Destroy(GameObject.Find("p2MainCard"));
+;
             Destroy(GameObject.Find("P1ParentCard"));
+            Destroy(GameObject.Find("P2ParentCard"));
+ 
             Destroy(GameObject.Find("P2ParentCard"));
             Destroy(GameObject.Find("P1imageSpriteInstance"));
             Destroy(GameObject.Find("P1SpriteParent"));
@@ -157,6 +168,7 @@ public class controller : MonoBehaviour
             Destroy(GameObject.Find("P2imageBGSpriteInstance"));
             Destroy(GameObject.Find("P2SpriteBG"));
 
+          //  loadPlayer1Card.rectTransform.localPosition = new Vector3(0, 0, 0);
 
             roundBegin();
 
@@ -215,21 +227,25 @@ public class controller : MonoBehaviour
 
         //Pick Random Card
         p1pickCard();
-  
-  
-        playerInstance01.AddComponent<loadPlayer1Card>();
+
+        P1mainCard = new GameObject();
+        P1mainCard.name = "p1MainCard";
+       // P1mainCard.transform.parent = playerInstance01.transform;
+        P1mainCard.AddComponent<loadPlayer1Card>();
 
       //  ActivePlayer = 2;
 
 
         //Pick Random Card
         p2pickCard();
-  
- 
-        playerInstance02.AddComponent<loadPlayer2Card>();
+
+        P2mainCard = new GameObject();
+        P2mainCard.name = "p2MainCard";
+     //   P2mainCard.transform.parent = playerInstance02.transform;
+        P2mainCard.AddComponent<loadPlayer2Card>();
 
         pickAttribute();
-        playerInstance01.AddComponent<compare>();
+        P1mainCard.AddComponent<compare>();
 
         //attacker pick value
 

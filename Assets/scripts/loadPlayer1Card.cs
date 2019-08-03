@@ -12,7 +12,7 @@ public class loadPlayer1Card : MonoBehaviour
     public TextAsset xmlRawFile;  //Declare xml file
     public Text playerName;  //Declare
     public Text Appearances;
-    public Image Background;
+    public static Image Background;
     string changeMeToInt;
     int IntValue;
 
@@ -31,7 +31,7 @@ public class loadPlayer1Card : MonoBehaviour
     public static int PremsBoxHeight = -60;
     public static int BookingsBoxHeight = -60;
 
-    public static int AppearancesValue;
+    //  public static int AppearancesValue;
 
     //** Public value that gets changed by scripts hoverEvent & FindSelectedAttribute to set the attribute box background colour **//
     public static int attributesBoxColour = 0;
@@ -43,7 +43,7 @@ public class loadPlayer1Card : MonoBehaviour
 
 
     //** Declare Rigidbody2d for images **//
-    Rigidbody2D TextBoxPhysics;
+   public static Rigidbody2D TextBoxPhysics;
 
     //** Hold Gravity Value **//
     public float gravityScale;
@@ -76,11 +76,11 @@ public class loadPlayer1Card : MonoBehaviour
     void Start()
     {
 
-   //     controller.ActivePlayer = 1;
+        //     controller.ActivePlayer = 1;
 
         /* Create a RectTransform to hold position, size, anchor and pivot information for the card elements */
-     //  RectTransform rectTransform;
-    Font arial;   /* Create a Font object */
+   //     RectTransform rectTransform;
+        Font arial;   /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");  /* Set the font type to the font object*/
 
         XmlDocument doc = new XmlDocument(); /* Create XmlDocument GO called doc */
@@ -90,10 +90,10 @@ public class loadPlayer1Card : MonoBehaviour
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable); /*Add a namespace to identify this group within the file (necessary)*/
         nsmgr.AddNamespace("default", "urn:newcards-schema"); /* Assign the namespace to match that within the xml (1st input is prefix but not needed in my case) */
         SelectCardId = SelectedCardId.ToString(); //converts current card id to a string
-      
+
 
         Debug.Log("P1 card in hand Picked " + SelectCardId);
- 
+
         XmlNode node = root.SelectSingleNode("descendant::default:player[default:id='" + SelectCardId + "']", nsmgr); /* selects the correct <player> node by finding a decendent of it that matches the SelectCardId ID */
         XmlNode id = node.FirstChild;
         XmlNode name = id.NextSibling;
@@ -112,8 +112,8 @@ public class loadPlayer1Card : MonoBehaviour
 
 
         GameObject card01 = (GameObject)Instantiate(card);   /**/
-        card01.transform.parent = controller.playerInstance01.transform;   /**/
-        card01.name = name.InnerXml;   /**/
+        card01.transform.parent = controller.P1mainCard.transform;   /**/
+        card01.name = "P1Card";   /**/
 
         card01.AddComponent<Canvas>();   /**/
         card01.AddComponent<CanvasScaler>();   /**/
@@ -173,6 +173,18 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxBGBox.AddComponent<CanvasScaler>();
         textBoxBGBox.AddComponent<GraphicRaycaster>();
 
+        textBoxBGBox.AddComponent<BoxCollider2D>();
+        textBoxBGBox.AddComponent<Rigidbody2D>();
+
+        Background = textBoxBGBox.GetComponent<Image>();
+        Background.color = transparent;
+
+        rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+      //  rectTransform.localPosition = new Vector3(0, 0, 0);
+      //  rectTransform.sizeDelta = new Vector2(350, 490);
+
+        TextBoxPhysics = textBoxBGBox.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
 
 
 
@@ -180,11 +192,15 @@ public class loadPlayer1Card : MonoBehaviour
 
 
 
+
+
+        //////
 
 
         //**PLAYER NAME**//
         // Create the Text GameObject.
         // GameObject textBox = (GameObject)Instantiate(textBoxApps);
+
         GameObject textBox = new GameObject();
         textBox.name = "Player1CardName";
         textBox.transform.parent = card01.transform;
@@ -205,33 +221,33 @@ public class loadPlayer1Card : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(350, 50);
 
 
-        //**APPEARANCES**//
+        //**-------APPEARANCES-------------**//
         //Create Text Background Colour Box
-        GameObject textBoxAppsImage = (GameObject)Instantiate(textBoxBGBox);
-        textBoxAppsImage.name = "AppearancesTextImage";
-        textBoxAppsImage.transform.parent = ImageBackgroundP1.transform;
-        textBoxBGBox.GetComponent<Canvas>();
-        textBoxBGBox.GetComponent<CanvasScaler>();
-        textBoxBGBox.GetComponent<GraphicRaycaster>();
-        textBoxAppsImage.AddComponent<BoxCollider2D>();
-        textBoxAppsImage.AddComponent<Rigidbody2D>();
+        /*     GameObject textBoxAppsImage = (GameObject)Instantiate(textBoxBGBox);
+             textBoxAppsImage.name = "AppearancesTextImage";
+           //  textBoxAppsImage.transform.parent = ImageBackgroundP1.transform;
+             textBoxBGBox.GetComponent<Canvas>();
+             textBoxBGBox.GetComponent<CanvasScaler>();
+             textBoxBGBox.GetComponent<GraphicRaycaster>();
+             textBoxAppsImage.AddComponent<BoxCollider2D>();
+             textBoxAppsImage.AddComponent<Rigidbody2D>();
 
-        rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+             rectTransform = textBoxBGBox.GetComponent<RectTransform>();
 
-        TextBoxPhysics = textBoxAppsImage.GetComponent<Rigidbody2D>();
-        TextBoxPhysics.gravityScale = 0;
+             TextBoxPhysics = textBoxAppsImage.GetComponent<Rigidbody2D>();
+             TextBoxPhysics.gravityScale = 0;
 
-        Background = textBoxBGBox.GetComponent<Image>();
-        Background.color = transparent;
+             Background = textBoxBGBox.GetComponent<Image>();
+             Background.color = transparent;  */
 
 
 
         textBoxApps = new GameObject();
-        textBoxApps.name = "AttributesText";
+        textBoxApps.name = "AppearancesText";
         textBoxApps.transform.parent = ImageBackgroundP1.transform;
         textBoxApps.AddComponent<Text>();
         Appearances = textBoxApps.GetComponent<Text>();
-        Appearances.text = "Appearances: " + apps.InnerXml;
+        Appearances.text = "Appearances: ";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.font = arial;
         Appearances.fontSize = fontSize;
@@ -240,74 +256,131 @@ public class loadPlayer1Card : MonoBehaviour
 
         textBoxApps.AddComponent<BoxCollider2D>();
         textBoxApps.AddComponent<Rigidbody2D>();
-        textBoxApps.AddComponent<HoverEvent>();
+     //   textBoxApps.AddComponent<HoverEvent>();
         textBoxApps.AddComponent<FindSelectedAttribute>();
         textBoxApps.AddComponent<Button>();
 
         TextBoxPhysics = textBoxApps.GetComponent<Rigidbody2D>();
         TextBoxPhysics.gravityScale = 0;
 
-        changeMeToInt = textBoxApps.name;
-        AppearancesInt = stringToint(apps.InnerXml);
-        ActiveCards.P1cardAttributes[0] = AppearancesInt;
+        //    changeMeToInt = textBoxApps.name;
+        //   AppearancesInt = stringToint(apps.InnerXml);
+        //    ActiveCards.P1cardAttributes[0] = AppearancesInt;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-55, -60, 1);
+        rectTransform.localPosition = new Vector3(-55, -60, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
 
 
+        /*-----------Apps Value--------*/
+        GameObject AppsValue = new GameObject();
+        AppsValue.name = "AppearancesValue";
+        AppsValue.transform.parent = textBoxApps.transform;
+        AppsValue.AddComponent<Text>();
+        Appearances = AppsValue.GetComponent<Text>();
+        Appearances.text = apps.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
 
+        AppsValue.AddComponent<BoxCollider2D>();
+        AppsValue.AddComponent<Rigidbody2D>();
+        //   AppsValue.AddComponent<HoverEvent>();
+        //    AppsValue.AddComponent<FindSelectedAttribute>();
+        //   AppsValue.AddComponent<Button>();
 
-        //Create Text Background Colour Box
-        GameObject textBoxGoalsImage = (GameObject)Instantiate(textBoxBGBox);
-        textBoxGoalsImage.name = "AppearancesTextImage";
-        textBoxGoalsImage.transform.parent = ImageBackgroundP1.transform;
-        textBoxBGBox.GetComponent<Canvas>();
-        textBoxBGBox.GetComponent<CanvasScaler>();
-        textBoxBGBox.GetComponent<GraphicRaycaster>();
-        textBoxGoalsImage.AddComponent<BoxCollider2D>();
-        textBoxGoalsImage.AddComponent<Rigidbody2D>();
-        rectTransform.sizeDelta = new Vector2(200, 22);
-
-        TextBoxPhysics = textBoxGoalsImage.GetComponent<Rigidbody2D>();
+        TextBoxPhysics = AppsValue.GetComponent<Rigidbody2D>();
         TextBoxPhysics.gravityScale = 0;
 
-        Background = textBoxBGBox.GetComponent<Image>();
-        Background.color = transparent;
+        changeMeToInt = AppsValue.name;
+        AppearancesInt = stringToint(apps.InnerXml);
+        ActiveCards.P1cardAttributes[0] = AppearancesInt;
+
+        Debug.Log("AppearancesInt " + AppearancesInt);
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
+
+
+
+
+
 
 
 
 
         //**GOALS**//
         // Create the Text GameObject.
-          textBoxGoals = new GameObject();
-       // textBoxGoals = (GameObject)Instantiate(textBoxApps);
+        textBoxGoals = new GameObject();
+        // textBoxGoals = (GameObject)Instantiate(textBoxApps);
         textBoxGoals.name = "GoalsText";
         textBoxGoals.transform.parent = textBoxApps.transform;
         textBoxGoals.AddComponent<Text>();
-      //  Appearances = textBoxApps.GetComponent<Text>();
+        //  Appearances = textBoxApps.GetComponent<Text>();
+        textBoxGoals.AddComponent<BoxCollider2D>();
+        textBoxGoals.AddComponent<Rigidbody2D>();
+      //  textBoxGoals.AddComponent<HoverEvent>();
+        textBoxGoals.AddComponent<FindSelectedAttribute>();
+        textBoxGoals.AddComponent<Button>();
 
         // Set Text component properties.
-          Appearances = textBoxGoals.GetComponent<Text>();
-          Appearances.font = arial;
-        Appearances.text = "Goals: " + goals.InnerXml;
+        Appearances = textBoxGoals.GetComponent<Text>();
+        Appearances.font = arial;
+        Appearances.text = "Goals: ";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
-        Appearances.color = Color.black;       
+        Appearances.color = Color.black;
 
-        changeMeToInt = textBoxGoals.name;
-        GoalsInt = stringToint(goals.InnerXml);
-        ActiveCards.P1cardAttributes[1] = GoalsInt;
+        //   changeMeToInt = textBoxGoals.name;
+        //   GoalsInt = stringToint(goals.InnerXml);
+        //   ActiveCards.P1cardAttributes[1] = GoalsInt;
 
-     //   TextBoxPhysics = textBoxGoals.GetComponent<Rigidbody2D>();
-     //   TextBoxPhysics.gravityScale = 0;
+        TextBoxPhysics = textBoxGoals.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, -30, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
+
+
+        /*-----------Goals Value--------*/
+        GameObject GoalsValue = new GameObject();
+        GoalsValue.name = "GoalsValue";
+        GoalsValue.transform.parent = textBoxGoals.transform;
+        GoalsValue.AddComponent<Text>();
+        Appearances = GoalsValue.GetComponent<Text>();
+        Appearances.text = goals.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
+
+        GoalsValue.AddComponent<BoxCollider2D>();
+        GoalsValue.AddComponent<Rigidbody2D>();
+        //   GoalsValue.AddComponent<HoverEvent>();
+        //   GoalsValue.AddComponent<FindSelectedAttribute>();
+        //   GoalsValue.AddComponent<Button>();
+
+        TextBoxPhysics = GoalsValue.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        changeMeToInt = GoalsValue.name;
+        GoalsInt = stringToint(goals.InnerXml);
+        ActiveCards.P1cardAttributes[1] = GoalsInt;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
 
 
         //**-----------ASSISTS----------**//
@@ -317,49 +390,142 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxAssists.name = "AssistsText";
         textBoxAssists.transform.parent = textBoxApps.transform;
         textBoxAssists.AddComponent<Text>();
+        textBoxAssists.AddComponent<BoxCollider2D>();
+        textBoxAssists.AddComponent<Rigidbody2D>();
+
+        TextBoxPhysics = textBoxAssists.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+     //   textBoxAssists.AddComponent<HoverEvent>();
+        textBoxAssists.AddComponent<FindSelectedAttribute>();
+        textBoxAssists.AddComponent<Button>();
+
 
         // Set Text component properties.
         Appearances = textBoxAssists.GetComponent<Text>();
         Appearances.font = arial;
-        Appearances.text = "Assists: " + assists.InnerXml;
+        Appearances.text = "Assists: ";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
         Appearances.color = Color.black;
 
-        changeMeToInt = textBoxAssists.name;
-        AssistsInt = stringToint(assists.InnerXml);
-        ActiveCards.P1cardAttributes[2] = AssistsInt;
+     //   TextBoxPhysics = textBoxAssists.GetComponent<Rigidbody2D>();
+    //    TextBoxPhysics.gravityScale = 0;
+
+        // changeMeToInt = textBoxAssists.name;
+        //  AssistsInt = stringToint(assists.InnerXml);
+        //  ActiveCards.P1cardAttributes[2] = AssistsInt;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, -60, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
 
+    //    textBoxAssists.AddComponent<HoverEvent>();
+     //   textBoxAssists.AddComponent<FindSelectedAttribute>();
+     //   textBoxAssists.AddComponent<Button>();
+
+        /*-----------Assists Value--------*/
+        GameObject AssistsValue = new GameObject();
+        AssistsValue.name = "AssistsValue";
+        AssistsValue.transform.parent = textBoxAssists.transform;
+        AssistsValue.AddComponent<Text>();
+        Appearances = AssistsValue.GetComponent<Text>();
+        Appearances.text = assists.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
+
+        AssistsValue.AddComponent<BoxCollider2D>();
+        AssistsValue.AddComponent<Rigidbody2D>();
+        //   AssistsValue.AddComponent<HoverEvent>();
+        //   AssistsValue.AddComponent<FindSelectedAttribute>();
+        //    AssistsValue.AddComponent<Button>();
+
+        TextBoxPhysics = AssistsValue.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        changeMeToInt = AssistsValue.name;
+        AssistsInt = stringToint(assists.InnerXml);
+        ActiveCards.P1cardAttributes[2] = AssistsInt;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
+
+
+
         //**-----------TEAMS--------------**//
         // Create the Text GameObject.
-        textBoxTeams = (GameObject)Instantiate(textBoxAssists);
+        //textBoxTeams = (GameObject)Instantiate(textBoxAssists);
+        textBoxTeams = new GameObject();
         textBoxTeams.name = "TeamsText";
         textBoxTeams.transform.parent = textBoxApps.transform;
         textBoxTeams.AddComponent<Text>();
 
+        textBoxTeams.AddComponent<BoxCollider2D>();
+        textBoxTeams.AddComponent<Rigidbody2D>();
+     //   textBoxTeams.AddComponent<HoverEvent>();
+        textBoxTeams.AddComponent<FindSelectedAttribute>();
+        textBoxTeams.AddComponent<Button>();
+
         // Set Text component properties.
         Appearances = textBoxTeams.GetComponent<Text>();
         Appearances.font = arial;
-        Appearances.text = "Teams: " + teams.InnerXml;
+        Appearances.text = "Teams: ";
         Appearances.fontStyle = FontStyle.Bold;
-           Appearances.fontSize = fontSize;
-           Appearances.alignment = TextAnchor.MiddleLeft;
-           Appearances.color = Color.black;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleLeft;
+        Appearances.color = Color.black;
 
-        changeMeToInt = textBoxTeams.name;
-        TeamsInt = stringToint(teams.InnerXml);
-        ActiveCards.P1cardAttributes[3] = TeamsInt;
+        // changeMeToInt = textBoxTeams.name;
+        // TeamsInt = stringToint(teams.InnerXml);
+        //  ActiveCards.P1cardAttributes[3] = TeamsInt;
+
+        TextBoxPhysics = textBoxTeams.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, -90, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
+
+        /*-----------Teams Value--------*/
+        GameObject TeamsValue = new GameObject();
+        TeamsValue.name = "TeamsValue";
+        TeamsValue.transform.parent = textBoxTeams.transform;
+        TeamsValue.AddComponent<Text>();
+        Appearances = TeamsValue.GetComponent<Text>();
+        Appearances.text = teams.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
+
+        TeamsValue.AddComponent<BoxCollider2D>();
+        TeamsValue.AddComponent<Rigidbody2D>();
+        //   TeamsValue.AddComponent<HoverEvent>();
+        //   TeamsValue.AddComponent<FindSelectedAttribute>();
+        //   TeamsValue.AddComponent<Button>();
+
+        TextBoxPhysics = TeamsValue.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        changeMeToInt = TeamsValue.name;
+        TeamsInt = stringToint(teams.InnerXml);
+        ActiveCards.P1cardAttributes[3] = TeamsInt;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
 
         //**PREMS**//
         // Create the Text GameObject.
@@ -368,48 +534,135 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxPrems.transform.parent = textBoxApps.transform;
         textBoxPrems.AddComponent<Text>();
 
+        textBoxPrems.AddComponent<BoxCollider2D>();
+        textBoxPrems.AddComponent<Rigidbody2D>();
+     //   textBoxPrems.AddComponent<HoverEvent>();
+        textBoxPrems.AddComponent<FindSelectedAttribute>();
+        textBoxPrems.AddComponent<Button>();
+
         // Set Text component properties.
         Appearances = textBoxPrems.GetComponent<Text>();
         Appearances.font = arial;
-        Appearances.text = "Premier Leagues: " + prems.InnerXml;
+        Appearances.text = "Premier Leagues: ";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
         Appearances.color = Color.black;
 
-        changeMeToInt = textBoxPrems.name;
-        PremsInt = stringToint(prems.InnerXml);
-        ActiveCards.P1cardAttributes[4] = PremsInt;
+        TextBoxPhysics = textBoxPrems.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        //  changeMeToInt = textBoxPrems.name;
+        //   PremsInt = stringToint(prems.InnerXml);
+        //  ActiveCards.P1cardAttributes[4] = PremsInt;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, -120, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
 
+
+        /*-----------Prems Value--------*/
+        GameObject PremsValue = new GameObject();
+        PremsValue.name = "PremsValue";
+        PremsValue.transform.parent = textBoxPrems.transform;
+        PremsValue.AddComponent<Text>();
+        Appearances = PremsValue.GetComponent<Text>();
+        Appearances.text = prems.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
+
+        PremsValue.AddComponent<BoxCollider2D>();
+        PremsValue.AddComponent<Rigidbody2D>();
+        //   PremsValue.AddComponent<HoverEvent>();
+        //   PremsValue.AddComponent<FindSelectedAttribute>();
+        //   PremsValue.AddComponent<Button>();
+
+        TextBoxPhysics = PremsValue.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        changeMeToInt = PremsValue.name;
+        PremsInt = stringToint(prems.InnerXml);
+        ActiveCards.P1cardAttributes[4] = PremsInt;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
+
+
+
         //**BOOKINGS**//
         // Create the Text GameObject.
-        GameObject textBoxBookings = new GameObject();
+        textBoxBookings = new GameObject();
         textBoxBookings.name = "BookingsText";
         textBoxBookings.transform.parent = textBoxApps.transform;
         textBoxBookings.AddComponent<Text>();
 
+        textBoxBookings.AddComponent<BoxCollider2D>();
+        textBoxBookings.AddComponent<Rigidbody2D>();
+    //    textBoxBookings.AddComponent<HoverEvent>();
+        textBoxBookings.AddComponent<FindSelectedAttribute>();
+        textBoxBookings.AddComponent<Button>();
+
         // Set Text component properties.
         Appearances = textBoxBookings.GetComponent<Text>();
         Appearances.font = arial;
-        Appearances.text = "Bookings: " + bookings.InnerXml;
+        Appearances.text = "Bookings: ";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
         Appearances.color = Color.black;
 
-        changeMeToInt = textBoxBookings.name;
-        BookingsInt = stringToint(bookings.InnerXml);
-        ActiveCards.P1cardAttributes[5] = BookingsInt;
+        TextBoxPhysics = textBoxBookings.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        //   changeMeToInt = textBoxBookings.name;
+        //  BookingsInt = stringToint(bookings.InnerXml);
+        //  ActiveCards.P1cardAttributes[5] = BookingsInt;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, -150, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
+
+
+        /*-----------Bookings Value--------*/
+        GameObject BookingsValue = new GameObject();
+        BookingsValue.name = "BookingsValue";
+        BookingsValue.transform.parent = textBoxBookings.transform;
+        BookingsValue.AddComponent<Text>();
+        Appearances = BookingsValue.GetComponent<Text>();
+        Appearances.text = bookings.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleCenter;
+        Appearances.color = Color.black;
+
+        BookingsValue.AddComponent<BoxCollider2D>();
+        BookingsValue.AddComponent<Rigidbody2D>();
+        //  BookingsValue.AddComponent<HoverEvent>();
+        //   BookingsValue.AddComponent<FindSelectedAttribute>();
+        //  BookingsValue.AddComponent<Button>();
+
+        TextBoxPhysics = BookingsValue.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        changeMeToInt = BookingsValue.name;
+        BookingsInt = stringToint(bookings.InnerXml);
+        ActiveCards.P1cardAttributes[5] = BookingsInt;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(60, 0, 0);
+        rectTransform.sizeDelta = new Vector2(30, 22);
+
 
 
 
@@ -420,18 +673,27 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxTrivia.transform.parent = textBoxApps.transform;
         textBoxTrivia.AddComponent<Text>();
 
+        textBoxTrivia.AddComponent<BoxCollider2D>();
+        textBoxTrivia.AddComponent<Rigidbody2D>();
+        //  textBoxTrivia.AddComponent<HoverEvent>();
+        //   textBoxTrivia.AddComponent<FindSelectedAttribute>();
+        //   textBoxTrivia.AddComponent<Button>();
+
         // Set Text component properties.
         Appearances = textBoxTrivia.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = trivia.InnerXml;
-       // Appearances.fontStyle = FontStyle.Bold;
+        // Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = 11;
         Appearances.alignment = TextAnchor.MiddleLeft;
         Appearances.color = Color.black;
 
-        changeMeToInt = textBoxTrivia.name;
-        BookingsInt = stringToint(bookings.InnerXml);
-        ActiveCards.P1cardAttributes[5] = BookingsInt;
+        TextBoxPhysics = textBoxTrivia.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        //  changeMeToInt = textBoxTrivia.name;
+        //  BookingsInt = stringToint(bookings.InnerXml);
+        //  ActiveCards.P1cardAttributes[5] = BookingsInt;
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
@@ -457,13 +719,13 @@ public class loadPlayer1Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     //   float timer = 10;
-     //   timer -= Time.deltaTime;
+        //   float timer = 10;
+        //   timer -= Time.deltaTime;
 
 
         if (attributesBoxColour == 1)
         {
-            Background.color = hoverColour ;
+            Background.color = hoverColour;
             attributesBoxColour = 0; //reset event so not always returning ==1
             Debug.Log("boxColour =" + attributesBoxColour);
 
@@ -477,9 +739,9 @@ public class loadPlayer1Card : MonoBehaviour
         else if (attributesBoxColour == 3)
         {
             Background.color = clickedColour;
-          //  timer -= Time.deltaTime;
-      //      textBoxAppsColour = 4;  //reset event so not always returning ==2  
-            
+            //  timer -= Time.deltaTime;
+            //      textBoxAppsColour = 4;  //reset event so not always returning ==2  
+
             Debug.Log("boxColour =" + attributesBoxColour);
 
         }
@@ -487,19 +749,19 @@ public class loadPlayer1Card : MonoBehaviour
 
 
     }
- /*   return stringToint(int ){
-    // Convert Text number into String
-    int.TryParse(apps.InnerXml, out AppearancesInt);
-    int Value = AppearancesInt;
+    /*   return stringToint(int ){
+       // Convert Text number into String
+       int.TryParse(apps.InnerXml, out AppearancesInt);
+       int Value = AppearancesInt;
 
-        return Value;
-    }*/
+           return Value;
+       }*/
 
-        int stringToint(string changeMeToInt)
+    int stringToint(string changeMeToInt)
     {
         // Convert Text number into String
         int.TryParse(changeMeToInt, out IntValue);
-      //  int IntValue = AppearancesInt;
+        //  int IntValue = AppearancesInt;
 
         return IntValue;
     }
@@ -507,7 +769,7 @@ public class loadPlayer1Card : MonoBehaviour
     public void assignToActiveCard()
     {
         Debug.Log("Clicked");
-     //   ActiveCards.P1cardAttributes[0] = AppearancesInt;
+        //   ActiveCards.P1cardAttributes[0] = AppearancesInt;
 
     }
 
