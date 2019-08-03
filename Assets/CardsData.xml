@@ -1,65 +1,70 @@
 ﻿<playercards xmlns="urn:newcards-schema">
-  
-    <player>
-      <id>1</id>
-      <name>Thierry Henry</name>
-      <apps>258</apps>
-      <goals>175</goals>
-      <assists>74</assists>
-      <teams>1</teams>
-      <prems>2</prems>
-      <bookings>30</bookings>
-    </player>
-    <player>
+
+  <player>
+    <id>1</id>
+    <name>Thierry Henry</name>
+    <apps>258</apps>
+    <goals>175</goals>
+    <assists>74</assists>
+    <teams>1</teams>
+    <prems>2</prems>
+    <bookings>30</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
+  </player>
+  <player>
     <id>2</id>
-      <name>Ryan Giggs</name>
-      <apps>632</apps>
-      <goals>109</goals>
-      <assists>162</assists>
-      <teams>1</teams>
-      <prems>13</prems>
-      <bookings>37</bookings>
-    </player>
-    <player>
-      <id>3</id>
-      <name>Frank Lampard</name>
-      <apps>609</apps>
-      <goals>177</goals>
-      <assists>102</assists>
-      <teams>2</teams>
-      <prems>3</prems>
-      <bookings>61</bookings>
-    </player>
-    <player>
-      <id>4</id>
-      <name>Steven Gerrard</name>
-      <apps>504</apps>
-      <goals>120</goals>
-      <assists>92</assists>
-      <teams>1</teams>
-      <prems>0</prems>
-      <bookings>67</bookings>
-    </player>
-    <player>
-      <id>5</id>
-      <name>Didier Drogba</name>
-      <apps>254</apps>
-      <goals>104</goals>
-      <assists>54</assists>
-      <teams>1</teams>
-      <prems>4</prems>
-      <bookings>46</bookings>
-    </player>
-    <player>
-      <id>6</id>
-      <name>Wayne Rooney</name>
-      <apps>491</apps>
-      <goals>208</goals>
-      <assists>103</assists>
-      <teams>2</teams>
-      <prems>5</prems>
-      <bookings>105</bookings>
-    </player>
+    <name>Ryan Giggs</name>
+    <apps>632</apps>
+    <goals>109</goals>
+    <assists>162</assists>
+    <teams>1</teams>
+    <prems>13</prems>
+    <bookings>37</bookings>
+    <trivia>The most successful and decorated player in the history of football.</trivia>
+  </player>
+  <player>
+    <id>3</id>
+    <name>Frank Lampard</name>
+    <apps>609</apps>
+    <goals>177</goals>
+    <assists>102</assists>
+    <teams>2</teams>
+    <prems>3</prems>
+    <bookings>61</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
+  </player>
+  <player>
+    <id>4</id>
+    <name>Steven Gerrard</name>
+    <apps>504</apps>
+    <goals>120</goals>
+    <assists>92</assists>
+    <teams>1</teams>
+    <prems>0</prems>
+    <bookings>67</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
+  </player>
+  <player>
+    <id>5</id>
+    <name>Didier Drogba</name>
+    <apps>254</apps>
+    <goals>104</goals>
+    <assists>54</assists>
+    <teams>1</teams>
+    <prems>4</prems>
+    <bookings>46</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
+  </player>
+  <player>
+    <id>6</id>
+    <name>Wayne Rooney</name>
+    <apps>491</apps>
+    <goals>208</goals>
+    <assists>103</assists>
+    <teams>2</teams>
+    <prems>5</prems>
+    <bookings>105</bookings>
+  </player>
   <player>
     <id>7</id>
     <name>Paul Scholes</name>
@@ -69,6 +74,7 @@
     <teams>1</teams>
     <prems>11</prems>
     <bookings>101</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>8</id>
@@ -79,6 +85,7 @@
     <teams>1</teams>
     <prems>3</prems>
     <bookings>41</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>9</id>
@@ -89,16 +96,18 @@
     <teams>2</teams>
     <prems>1</prems>
     <bookings>43</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
-  <id>10</id>
-  <name>Eric Cantona</name>
-  <apps>156</apps>
-  <goals>70</goals>
-  <assists>56</assists>
-  <teams>2</teams>
-  <prems>4</prems>
-  <bookings>18</bookings>
+    <id>10</id>
+    <name>Eric Cantona</name>
+    <apps>156</apps>
+    <goals>70</goals>
+    <assists>56</assists>
+    <teams>2</teams>
+    <prems>4</prems>
+    <bookings>18</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>11</id>
@@ -109,6 +118,7 @@
     <teams>5</teams>
     <prems>3</prems>
     <bookings>25</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>12</id>
@@ -119,6 +129,7 @@
     <teams>1</teams>
     <prems>0</prems>
     <bookings>5</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>13</id>
@@ -129,6 +140,7 @@
     <teams>1</teams>
     <prems>1</prems>
     <bookings>16</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>14</id>
@@ -139,6 +151,7 @@
     <teams>7</teams>
     <prems>5</prems>
     <bookings>46</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>15</id>
@@ -149,6 +162,7 @@
     <teams>4</teams>
     <prems>0</prems>
     <bookings>29</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>16</id>
@@ -159,6 +173,7 @@
     <teams>4</teams>
     <prems>1</prems>
     <bookings>11</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>17</id>
@@ -169,6 +184,7 @@
     <teams>2</teams>
     <prems>1</prems>
     <bookings>48</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>18</id>
@@ -179,6 +195,7 @@
     <teams>6</teams>
     <prems>0</prems>
     <bookings>46</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>19</id>
@@ -189,6 +206,7 @@
     <teams>6</teams>
     <prems>3</prems>
     <bookings>43</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
   <player>
     <id>20</id>
@@ -199,8 +217,9 @@
     <teams>6</teams>
     <prems>2</prems>
     <bookings>6</bookings>
+    <trivia>The best striker that Arsenal have ever had and will ever have. They even erected a statue of him at the Emirates Stadium. Nevermind the fact that as soon as a decent club came along like Barcelona he was out that door faster than you can say dirty gooner.</trivia>
   </player>
-  
 
- 
+
+
 </playercards>

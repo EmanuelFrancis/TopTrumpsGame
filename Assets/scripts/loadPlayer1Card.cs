@@ -103,6 +103,7 @@ public class loadPlayer1Card : MonoBehaviour
         XmlNode teams = assists.NextSibling;
         XmlNode prems = teams.NextSibling;
         XmlNode bookings = prems.NextSibling;
+        XmlNode trivia = bookings.NextSibling;
         // Debug.Log(name.InnerXml);
 
         //** Card Parent Game Object **//
@@ -411,6 +412,33 @@ public class loadPlayer1Card : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(200, 22);
 
 
+
+        //**Trivia**//
+        // Create the Text GameObject.
+        GameObject textBoxTrivia = new GameObject();
+        textBoxTrivia.name = "TriviaText";
+        textBoxTrivia.transform.parent = textBoxApps.transform;
+        textBoxTrivia.AddComponent<Text>();
+
+        // Set Text component properties.
+        Appearances = textBoxTrivia.GetComponent<Text>();
+        Appearances.font = arial;
+        Appearances.text = trivia.InnerXml;
+       // Appearances.fontStyle = FontStyle.Bold;
+        Appearances.fontSize = 11;
+        Appearances.alignment = TextAnchor.MiddleLeft;
+        Appearances.color = Color.black;
+
+        changeMeToInt = textBoxTrivia.name;
+        BookingsInt = stringToint(bookings.InnerXml);
+        ActiveCards.P1cardAttributes[5] = BookingsInt;
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = Appearances.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(152, -97, 0);
+        rectTransform.sizeDelta = new Vector2(136, 154);
+
+
         //  ActiveCards.P1cardAttributes[0] = AppearancesInt;
         ///  ActiveCards.P1cardAttributes[1] = GoalsInt;
         //  ActiveCards.P1cardAttributes[2] = AssistsInt;
@@ -418,7 +446,7 @@ public class loadPlayer1Card : MonoBehaviour
         //  ActiveCards.P1cardAttributes[4] = PremsInt;
         //   ActiveCards.P1cardAttributes[5] = BookingsInt;
 
-       // controller.ActivePlayer = 2;
+        // controller.ActivePlayer = 2;
 
         //    playerCardClass.playerCard p1Card = new playerCardClass.playerCard(SelectedCardId, textBox.name, AppearancesInt, GoalsInt, AssistsInt, TeamsInt, PremsInt, BookingsInt);
 
