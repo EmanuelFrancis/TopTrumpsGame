@@ -43,17 +43,45 @@ public class HoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
             Debug.Log("-90");
         }
+        else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxAssists.name)
+        {
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -120, 0);
+            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+
+        }
+        else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxTeams.name)
+        {
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -150, 0);
+            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+
+        }
+        else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxPrems.name)
+        {
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -180, 0);
+            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+
+        }
+        else// (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxBookings.name)
+        {
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -210, 0);
+            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+
+        }
 
 
 
 
-      //  loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+        //  loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
 
         //    loadPlayer1Card.rectTransform.localPosition = new Vector3(-60, -100, 0);
         //   loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
 
 
-     //   loadPlayer1Card.textBoxBGBox.transform.Translate(0, -30, 0);
+        //   loadPlayer1Card.textBoxBGBox.transform.Translate(0, -30, 0);
 
     }
 
