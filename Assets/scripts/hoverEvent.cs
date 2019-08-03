@@ -36,65 +36,60 @@ public class HoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -60, 0);
          //   loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
 
-            loadPlayer1Card.TextBoxPhysics = loadPlayer1Card.textBoxBGBox.GetComponent<Rigidbody2D>();
-            loadPlayer1Card.TextBoxPhysics.gravityScale = 0;
-            Debug.Log("-60");
+
         }
         else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxGoals.name)
         {
             loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
             loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -90, 0);
-            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+        //    loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
 
-            loadPlayer1Card.TextBoxPhysics = loadPlayer1Card.textBoxBGBox.GetComponent<Rigidbody2D>();
-            loadPlayer1Card.TextBoxPhysics.gravityScale = 0;
-            Debug.Log("-90");
         }
         else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxAssists.name)
         {
-            rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(-55, -120, 0);
-            rectTransform.sizeDelta = new Vector2(200, 22);
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -120, 0);
+        //    rectTransform.sizeDelta = new Vector2(200, 22);
 
         }
         else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxTeams.name)
         {
-            rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(-55, -150, 0);
-            rectTransform.sizeDelta = new Vector2(200, 22);
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -150, 0);
+         //   rectTransform.sizeDelta = new Vector2(200, 22);
 
         }
         else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxPrems.name)
         {
-            rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(-55, -180, 0);
-            rectTransform.sizeDelta = new Vector2(200, 22);
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -180, 0);
+         //   rectTransform.sizeDelta = new Vector2(200, 22);
 
         }
         else if (pointerEventData.pointerEnter.name == loadPlayer1Card.textBoxBookings.name)
         {
-            rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(-55, -210, 0);
-            rectTransform.sizeDelta = new Vector2(200, 22);
+            loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+            loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -210, 0);
+         //   rectTransform.sizeDelta = new Vector2(200, 22);
 
         }
         else
         {
             loadPlayer1Card.rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
             loadPlayer1Card.rectTransform.localPosition = new Vector3(-55, -210, 0);
-            loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
+         //   loadPlayer1Card.rectTransform.sizeDelta = new Vector2(200, 22);
         }
 
 
 
 
-        //  rectTransform = loadPlayer1Card.textBoxBGBox.GetComponent<RectTransform>();
+        //  rectTransform = loadPlayer1Card.textBoxImage.GetComponent<RectTransform>();
 
         //    rectTransform.localPosition = new Vector3(-60, -100, 0);
         //   rectTransform.sizeDelta = new Vector2(200, 22);
 
 
-        //   loadPlayer1Card.textBoxBGBox.transform.Translate(0, -30, 0);
+        //   loadPlayer1Card.textBoxImage.transform.Translate(0, -30, 0);
 
     }
 

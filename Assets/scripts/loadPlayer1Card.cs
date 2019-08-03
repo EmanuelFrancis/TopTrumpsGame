@@ -62,6 +62,8 @@ public class loadPlayer1Card : MonoBehaviour
     public static RectTransform rectTransform;
 
     public static GameObject textBoxBGBox;
+    public static GameObject textBoxImage;
+    
 
     public static GameObject textBoxApps;
     public static GameObject textBoxGoals;
@@ -109,23 +111,34 @@ public class loadPlayer1Card : MonoBehaviour
         //** Card Parent Game Object **//
         GameObject card = new GameObject();
         card.name = "P1ParentCard";
+        card.transform.parent = controller.P1mainCard.transform;
+
+        card.AddComponent<Canvas>();   /**/
+        card.AddComponent<CanvasScaler>();   /**/
+        card.AddComponent<GraphicRaycaster>();
+
+        rectTransform = card.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(-239, 5, 0);
+        rectTransform.sizeDelta = new Vector2(350, 490);
 
 
         GameObject card01 = (GameObject)Instantiate(card);   /**/
-        card01.transform.parent = controller.P1mainCard.transform;   /**/
+        card01.transform.parent = card.transform;   /**/
         card01.name = "P1Card";   /**/
 
-        card01.AddComponent<Canvas>();   /**/
-        card01.AddComponent<CanvasScaler>();   /**/
-        card01.AddComponent<GraphicRaycaster>();   /**/
-
+        //    card01.AddComponent<Canvas>();   /**/
+        //   card01.AddComponent<CanvasScaler>();   /**/
+        //    card01.AddComponent<GraphicRaycaster>();   /**/
+        rectTransform = card01.GetComponent<RectTransform>();
+      //       rectTransform.localPosition = new Vector3(-239, 5, 0);
+            rectTransform.sizeDelta = new Vector2(350, 490);
 
 
         //********************************//
         // Create the Image GameObject
         GameObject ImageBox = new GameObject();
         ImageBox.name = "P1ImageBoxParent";
-        ImageBox.transform.parent = card.transform;
+        ImageBox.transform.parent = card01.transform;
         // Instantiate(ImageBox);
         GameObject ImageP1 = (GameObject)Instantiate(ImageBox);
 
@@ -147,20 +160,27 @@ public class loadPlayer1Card : MonoBehaviour
         // Create the Background Image GameObject
         GameObject ImageBackground = new GameObject();
         ImageBackground.name = "ImageBackgroundP1Parent";
-        ImageBackground.transform.parent = card.transform;
+        ImageBackground.transform.parent = card01.transform;
+      //  ImageBackground.AddComponent<Image>(); ;
+       // ImageBackground.AddComponent<GraphicRaycaster>();
+
+
+   //     rectTransform = ImageBackground.GetComponent<RectTransform>();
+    //    rectTransform.localPosition = new Vector3(-239, 5, 0);
+    //    rectTransform.sizeDelta = new Vector2(350, 490);
+
         // Instantiate(ImageBox);
         GameObject ImageBackgroundP1 = (GameObject)Instantiate(ImageBackground);
 
         ImageBackgroundP1.name = "ImageBackgroundP1";
-        ImageBackgroundP1.transform.parent = card01.transform;
+        ImageBackgroundP1.transform.parent = ImageBackground.transform;
         ImageBackgroundP1.AddComponent<Image>(); ;
         ImageBackgroundP1.AddComponent<GraphicRaycaster>();
         LoadBackground.playerIDInt = 1;
         ImageBackgroundP1.AddComponent<LoadBackground>();
 
-        // Provide Image position and size using RectTransform.
         rectTransform = ImageBackgroundP1.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-239, 5, 0);
+        rectTransform.localPosition = new Vector3(-478, 10, 0);
         rectTransform.sizeDelta = new Vector2(350, 490);
 
 
@@ -170,23 +190,48 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxBGBox.transform.parent = ImageBackgroundP1.transform;
         textBoxBGBox.AddComponent<Image>();
         textBoxBGBox.AddComponent<Canvas>();
-        textBoxBGBox.AddComponent<CanvasScaler>();
-        textBoxBGBox.AddComponent<GraphicRaycaster>();
+       textBoxBGBox.AddComponent<CanvasScaler>();
+       textBoxBGBox.AddComponent<GraphicRaycaster>();
 
-        textBoxBGBox.AddComponent<BoxCollider2D>();
-        textBoxBGBox.AddComponent<Rigidbody2D>();
+  
+
+        //Background = textBoxBGBox.GetComponent<Image>();
+      //  Background.color = transparent;
+
+     //   rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+      //  rectTransform.localPosition = new Vector3(288, 205, 0);
+      //  rectTransform.sizeDelta = new Vector2(200, 22);
+
+     //   TextBoxPhysics = textBoxBGBox.GetComponent<Rigidbody2D>();
+     //   TextBoxPhysics.gravityScale = 0;
+
+        GameObject textBoxImage = (GameObject)Instantiate(textBoxBGBox);
+        textBoxImage.name = "TextBoxBG";
+          textBoxImage.transform.parent = textBoxBGBox.transform;
+        textBoxBGBox.GetComponent<Canvas>();
+        textBoxBGBox.GetComponent<CanvasScaler>();
+        textBoxBGBox.GetComponent<GraphicRaycaster>();
+        textBoxImage.AddComponent<BoxCollider2D>();
+        textBoxImage.AddComponent<Rigidbody2D>();
+
+
+        //  textBoxImage.AddComponent<Image>();
+       // Background = textBoxBGBox.GetComponent<Canvas>();
+      //  Background = textBoxBGBox.GetComponent<CanvasScaler>();
+      //  Background = textBoxImage.AddComponent<GraphicRaycaster>();
+
+
+
+
+        rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+       // rectTransform.localPosition = new Vector3(593, 220, 0);
+        rectTransform.sizeDelta = new Vector2(200, 22);
+
+        TextBoxPhysics = textBoxImage.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
 
         Background = textBoxBGBox.GetComponent<Image>();
         Background.color = transparent;
-
-        rectTransform = textBoxBGBox.GetComponent<RectTransform>();
-      //  rectTransform.localPosition = new Vector3(0, 0, 0);
-      //  rectTransform.sizeDelta = new Vector2(350, 490);
-
-        TextBoxPhysics = textBoxBGBox.GetComponent<Rigidbody2D>();
-        TextBoxPhysics.gravityScale = 0;
-
-
 
 
 
@@ -256,7 +301,7 @@ public class loadPlayer1Card : MonoBehaviour
 
         textBoxApps.AddComponent<BoxCollider2D>();
         textBoxApps.AddComponent<Rigidbody2D>();
-     //   textBoxApps.AddComponent<HoverEvent>();
+        textBoxApps.AddComponent<HoverEvent>();
         textBoxApps.AddComponent<FindSelectedAttribute>();
         textBoxApps.AddComponent<Button>();
 
