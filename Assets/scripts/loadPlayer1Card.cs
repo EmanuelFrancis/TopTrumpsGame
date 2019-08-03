@@ -24,6 +24,13 @@ public class loadPlayer1Card : MonoBehaviour
     public static int PremsInt;
     public static int BookingsInt;
 
+    public static int AppearancesBoxHeight = -60;
+    public static int GoalsBoxHeight = -60;
+    public static int AssistsBoxHeight = -90;
+    public static int TeamsBoxHeight = -60;
+    public static int PremsBoxHeight = -60;
+    public static int BookingsBoxHeight = -60;
+
     public static int AppearancesValue;
 
     //** Public value that gets changed by scripts hoverEvent & FindSelectedAttribute to set the attribute box background colour **//
@@ -52,7 +59,14 @@ public class loadPlayer1Card : MonoBehaviour
     //*** Declare a string version of current p1 id *//
     public static string SelectCardId;
 
+    public static RectTransform rectTransform;
 
+    public static GameObject textBoxBGBox;
+
+    public static GameObject textBoxApps;
+    public static GameObject textBoxGoals;
+
+    public static int boxHeight;
 
     // Use this for initialization
     void Start()
@@ -60,8 +74,9 @@ public class loadPlayer1Card : MonoBehaviour
 
    //     controller.ActivePlayer = 1;
 
-        RectTransform rectTransform;   /* Create a RectTransform to hold position, size, anchor and pivot information for the card elements */
-        Font arial;   /* Create a Font object */
+        /* Create a RectTransform to hold position, size, anchor and pivot information for the card elements */
+     //  RectTransform rectTransform;
+    Font arial;   /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");  /* Set the font type to the font object*/
 
         XmlDocument doc = new XmlDocument(); /* Create XmlDocument GO called doc */
@@ -149,73 +164,57 @@ public class loadPlayer1Card : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(350, 490);
 
 
-        GameObject textBoxBGBox = new GameObject();
+        // Background Colour box for attributes Parent
+     textBoxBGBox = new GameObject();
         textBoxBGBox.name = "TextBoxBGParent";
         textBoxBGBox.transform.parent = ImageBackgroundP1.transform;
         textBoxBGBox.AddComponent<Image>();
         textBoxBGBox.AddComponent<Canvas>();
         textBoxBGBox.AddComponent<CanvasScaler>();
         textBoxBGBox.AddComponent<GraphicRaycaster>();
-        textBoxBGBox.AddComponent<BoxCollider2D>();
-        textBoxBGBox.AddComponent<Rigidbody2D>();
+  //      textBoxBGBox.AddComponent<BoxCollider2D>();
+  //      textBoxBGBox.AddComponent<Rigidbody2D>();
+
+   //     rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+   //     rectTransform.localPosition = new Vector3(-60, -60, 0);
+   //     rectTransform.sizeDelta = new Vector2(200, 22);
+
+    //    TextBoxPhysics = textBoxBGBox.GetComponent<Rigidbody2D>();
+   //     TextBoxPhysics.gravityScale = 0;
 
 
-       // textBoxBGBox.AddComponent<HoverEvent>();
-      //  textBoxBGBox.AddComponent<FindSelectedAttribute>();
-      //  textBoxBGBox.AddComponent<Button>();
 
- 
 
-        rectTransform = textBoxBGBox.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-60, -60, 0);
-        rectTransform.sizeDelta = new Vector2(200, 22);
 
-        TextBoxPhysics = textBoxBGBox.GetComponent<Rigidbody2D>();
-        TextBoxPhysics.gravityScale = 0;
 
-        //Create Text Background Image
+
+
+
+        //Create Text Background Colour Box
         GameObject textBoxAppsImage = (GameObject)Instantiate(textBoxBGBox);
         textBoxAppsImage.name = "AppearancesTextImage";
         textBoxAppsImage.transform.parent = ImageBackgroundP1.transform;
         textBoxBGBox.GetComponent<Canvas>();
         textBoxBGBox.GetComponent<CanvasScaler>();
         textBoxBGBox.GetComponent<GraphicRaycaster>();
+        textBoxAppsImage.AddComponent<BoxCollider2D>();
+        textBoxAppsImage.AddComponent<Rigidbody2D>();
 
-        TextBoxPhysics = textBoxAppsImage.GetComponent<Rigidbody2D>();
-        TextBoxPhysics.gravityScale = 0;
+             rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+      //       rectTransform.localPosition = new Vector3(-60, -60, 0);
+       //      rectTransform.sizeDelta = new Vector2(200, 22);
+
+             TextBoxPhysics = textBoxAppsImage.GetComponent<Rigidbody2D>();
+            TextBoxPhysics.gravityScale = 0;
+
 
         Background = textBoxBGBox.GetComponent<Image>();
         Background.color = transparent;
 
 
-
-
-        GameObject attributesBox = new GameObject();
-        attributesBox.name = "AttributesBoxParent";
-        attributesBox.transform.parent = ImageBackgroundP1.transform;
-        attributesBox.AddComponent<Text>();
-        Appearances = attributesBox.GetComponent<Text>();
-        Appearances.fontStyle = FontStyle.Bold;
-        Appearances.font = arial;
-        Appearances.fontSize = fontSize;
-        Appearances.alignment = TextAnchor.MiddleLeft;
-        Appearances.color = Color.black;
-        attributesBox.AddComponent<BoxCollider2D>();
-        attributesBox.AddComponent<Rigidbody2D>();
-     //   attributesBox.AddComponent<Timer>();
-        attributesBox.AddComponent<HoverEvent>();
-        attributesBox.AddComponent<FindSelectedAttribute>();
-        attributesBox.AddComponent<Button>();
-
-
-
-        TextBoxPhysics = attributesBox.GetComponent<Rigidbody2D>();
-        TextBoxPhysics.gravityScale = 0;
-
-
         //**PLAYER NAME**//
         // Create the Text GameObject.
-        // GameObject textBox = (GameObject)Instantiate(attributesBox);
+        // GameObject textBox = (GameObject)Instantiate(textBoxApps);
         GameObject textBox = new GameObject();
         textBox.name = "Player1CardName";
         textBox.transform.parent = card01.transform;
@@ -239,17 +238,30 @@ public class loadPlayer1Card : MonoBehaviour
         //**APPEARANCES**//
 
 
-       
 
-
-
-
-        // Create the Text GameObject.
-        GameObject textBoxApps = (GameObject)Instantiate(attributesBox);
-      //  GameObject textBoxApps = new GameObject();
-        textBoxApps.name = "AppearancesText";
-        textBoxApps.transform.parent = attributesBox.transform;
+       textBoxApps = new GameObject();
+        textBoxApps.name = "AttributesText";
+        textBoxApps.transform.parent = ImageBackgroundP1.transform;
+        textBoxApps.AddComponent<Text>();
+        Appearances = textBoxApps.GetComponent<Text>();
         Appearances.text = "Appearances: " + apps.InnerXml;
+        Appearances.fontStyle = FontStyle.Bold;
+        Appearances.font = arial;
+        Appearances.fontSize = fontSize;
+        Appearances.alignment = TextAnchor.MiddleLeft;
+        Appearances.color = Color.black;
+     //   textBoxApps.
+
+      //  boxHeight = textBoxApps.name
+
+        textBoxApps.AddComponent<BoxCollider2D>();
+        textBoxApps.AddComponent<Rigidbody2D>();
+        textBoxApps.AddComponent<HoverEvent>();
+        textBoxApps.AddComponent<FindSelectedAttribute>();
+        textBoxApps.AddComponent<Button>();
+
+        TextBoxPhysics = textBoxApps.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
 
         changeMeToInt = textBoxApps.name;
         AppearancesInt = stringToint(apps.InnerXml);
@@ -262,17 +274,64 @@ public class loadPlayer1Card : MonoBehaviour
         rectTransform.localPosition = new Vector3(-55, -60, 1);
         rectTransform.sizeDelta = new Vector2(200, 22);
 
-        //**Button required for FindSelectedAttribute.cs**//
-      //  Button textBoxButton;
-      //  textBoxApps.AddComponent<Button>();
-   //     textBoxButton = textBoxApps.GetComponent<Button>();
-  //      textBoxButton.onClick.AddListener(assignToActiveCard);  
- 
+
+
+        /*
+
+                // Create the Text GameObject.
+                GameObject textBoxApps = (GameObject)Instantiate(textBoxApps);
+              //  GameObject textBoxApps = new GameObject();
+                textBoxApps.name = "AppearancesText";
+                textBoxApps.transform.parent = textBoxApps.transform;
+                Appearances.text = "Appearances: " + apps.InnerXml;
+
+                changeMeToInt = textBoxApps.name;
+                AppearancesInt = stringToint(apps.InnerXml);
+                ActiveCards.P1cardAttributes[0] = AppearancesInt;
+
+
+
+                // Provide Text position and size using RectTransform.
+                rectTransform = Appearances.GetComponent<RectTransform>();
+                rectTransform.localPosition = new Vector3(-55, -60, 1);
+                rectTransform.sizeDelta = new Vector2(200, 22);
+
+                //**Button required for FindSelectedAttribute.cs**/
+        //  Button textBoxButton;
+        //  textBoxApps.AddComponent<Button>();
+        //     textBoxButton = textBoxApps.GetComponent<Button>();
+        //      textBoxButton.onClick.AddListener(assignToActiveCard);  
+
+
+        //Create Text Background Colour Box
+        GameObject textBoxGoalsImage = (GameObject)Instantiate(textBoxBGBox);
+        textBoxGoalsImage.name = "AppearancesTextImage";
+        textBoxGoalsImage.transform.parent = ImageBackgroundP1.transform;
+        textBoxBGBox.GetComponent<Canvas>();
+        textBoxBGBox.GetComponent<CanvasScaler>();
+        textBoxBGBox.GetComponent<GraphicRaycaster>();
+        textBoxGoalsImage.AddComponent<BoxCollider2D>();
+        textBoxGoalsImage.AddComponent<Rigidbody2D>();
+
+    //    rectTransform = textBoxBGBox.GetComponent<RectTransform>();
+   //     rectTransform.localPosition = new Vector3(-60, -90, 0);
+        rectTransform.sizeDelta = new Vector2(200, 22);
+
+        TextBoxPhysics = textBoxGoalsImage.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        Background = textBoxBGBox.GetComponent<Image>();
+        Background.color = transparent;
+
+
+
+
         //**GOALS**//
         // Create the Text GameObject.
-        GameObject textBoxGoals = new GameObject();
+        //  textBoxGoals = new GameObject();
+        textBoxGoals = (GameObject)Instantiate(textBoxApps);
         textBoxGoals.name = "GoalsText";
-        textBoxGoals.transform.parent = ImageBackgroundP1.transform;
+        textBoxGoals.transform.parent = textBoxApps.transform;
         textBoxGoals.AddComponent<Text>();
         textBoxGoals.AddComponent<BoxCollider2D>();
         textBoxGoals.AddComponent<Rigidbody2D>();
@@ -285,6 +344,8 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances.alignment = TextAnchor.MiddleLeft;
         Appearances.color = Color.black;
 
+        
+
         changeMeToInt = textBoxGoals.name;
         GoalsInt = stringToint(goals.InnerXml);
         ActiveCards.P1cardAttributes[1] = GoalsInt;
@@ -294,7 +355,7 @@ public class loadPlayer1Card : MonoBehaviour
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-55, -90, 0);
+        rectTransform.localPosition = new Vector3(0, -30, 0);
         rectTransform.sizeDelta = new Vector2(200, 22);
 
         //**ASSISTS**//
@@ -433,7 +494,7 @@ public class loadPlayer1Card : MonoBehaviour
         {
             Background.color = clickedColour;
           //  timer -= Time.deltaTime;
-      //      attributesBoxColour = 4;  //reset event so not always returning ==2  
+      //      textBoxAppsColour = 4;  //reset event so not always returning ==2  
             
             Debug.Log("boxColour =" + attributesBoxColour);
 
