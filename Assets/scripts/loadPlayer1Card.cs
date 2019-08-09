@@ -111,7 +111,8 @@ public class loadPlayer1Card : MonoBehaviour
         //** Card Parent Game Object **//
         GameObject card = new GameObject();
         card.name = "P1ParentCard";
-        card.transform.parent = controller.P1mainCard.transform;
+        //card.transform.parent = controller.P1mainCard.transform;
+        card.transform.SetParent(controller.P1mainCard.transform);
 
         card.AddComponent<Canvas>();   /**/
         card.AddComponent<CanvasScaler>();   /**/
@@ -123,7 +124,8 @@ public class loadPlayer1Card : MonoBehaviour
 
 
         GameObject card01 = (GameObject)Instantiate(card);   /**/
-        card01.transform.parent = card.transform;   /**/
+     // card01.transform.parent = card.transform;   /**/
+        card01.transform.SetParent(card.transform);
         card01.name = "P1Card";   /**/
 
         //    card01.AddComponent<Canvas>();   /**/
@@ -207,7 +209,8 @@ public class loadPlayer1Card : MonoBehaviour
 
         GameObject textBoxImage = (GameObject)Instantiate(textBoxBGBox);
         textBoxImage.name = "TextBoxBG";
-          textBoxImage.transform.parent = textBoxBGBox.transform;
+       //   textBoxImage.transform.parent = textBoxBGBox.transform;
+        textBoxImage.transform.SetParent(textBoxBGBox.transform);
         textBoxBGBox.GetComponent<Canvas>();
         textBoxBGBox.GetComponent<CanvasScaler>();
         textBoxBGBox.GetComponent<GraphicRaycaster>();
