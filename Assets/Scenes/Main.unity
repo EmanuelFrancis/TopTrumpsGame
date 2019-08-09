@@ -251,8 +251,9 @@ GameObject:
   - component: {fileID: 347001227}
   - component: {fileID: 347001226}
   - component: {fileID: 347001225}
+  - component: {fileID: 347001228}
   m_Layer: 0
-  m_Name: controller
+  m_Name: StartMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347001224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbc53977eef676841a05caac83134412, type: 3}
   m_Name: 
@@ -275,7 +276,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347001224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3053e40c6c1ad07439563c43659b519b, type: 3}
   m_Name: 
@@ -296,6 +297,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347001228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347001224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46de19553bb0c543bfbed3f0bc99a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityScale: 0
+  MenuBGcolour:
+    serializedVersion: 2
+    rgba: 4278190080
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0

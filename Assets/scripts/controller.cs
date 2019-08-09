@@ -62,7 +62,9 @@ public class controller : MonoBehaviour
     void Start()
     {
 
-
+     //   GameObject StartMenu = new GameObject();
+     //   StartMenu.name = "Start Menu";
+     //   StartMenu.AddComponent<startMenu>();
  
         assignCards(); /* calls method to deal cards evenly between the players in game */
 
@@ -179,6 +181,10 @@ public class controller : MonoBehaviour
 
     void game()
     {
+
+
+
+
 
 
         roundBegin();
