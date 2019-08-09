@@ -71,14 +71,6 @@ public class controller : MonoBehaviour
         humanPlayer.name = "PlayerParentGameObject";  /* Names the parent humanPlayer GO */
 
 
-  //      humanPlayer.AddComponent<Canvas>();   /**/
-  //      humanPlayer.AddComponent<CanvasScaler>();   /**/
-   //     humanPlayer.AddComponent<GraphicRaycaster>();   /**/
-
-    //    rectTransform = humanPlayer.GetComponent<RectTransform>();
-    //    rectTransform.localPosition = new Vector3(0, 0, 0);
-    //    rectTransform.sizeDelta = new Vector2(350, 490);
-
 
 
         playerInstance01 = (GameObject)Instantiate(humanPlayer); /* creates an instance of the humanPlayer GO called playerInstance01 */
@@ -90,9 +82,6 @@ public class controller : MonoBehaviour
         playerInstance01.AddComponent<GraphicRaycaster>();   /**/
 
 
-     //   rectTransform = playerInstance01.GetComponent<RectTransform>();
-      //  rectTransform.localPosition = new Vector3(-20, 0, 0);
-     //   rectTransform.sizeDelta = new Vector2(350, 490);
 
 
         playerInstance02 = (GameObject)Instantiate(humanPlayer);
@@ -104,18 +93,10 @@ public class controller : MonoBehaviour
         playerInstance02.AddComponent<GraphicRaycaster>();   /**/
 
 
-      //  rectTransform = playerInstance02.GetComponent<RectTransform>();
-     //   rectTransform.localPosition = new Vector3(20, 0, 0);
-     //   rectTransform.sizeDelta = new Vector2(350, 490);
-
         ActiveplayerInstance = (GameObject)Instantiate(humanPlayer); /* creates an instance of the humanPlayer GO called playerInstance01 */
         ActiveplayerInstance.name = "ActivePlayer"; /* Sets the name of the p1 instance to whatever has been specified at Player1Name */
 
 
-
-
-      //  playerInstance01.transform.parent = humanPlayer.transform;
-     //   playerInstance02.transform.parent = humanPlayer.transform;
 
 
         dealCards();
@@ -150,7 +131,6 @@ public class controller : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
 
-            //  Destroy(loadPlayer1Card.card);
               Destroy(GameObject.Find("p1MainCard"));
               Destroy(GameObject.Find("p2MainCard"));
 ;
@@ -168,7 +148,6 @@ public class controller : MonoBehaviour
             Destroy(GameObject.Find("P2imageBGSpriteInstance"));
             Destroy(GameObject.Find("P2SpriteBG"));
 
-          //  loadPlayer1Card.rectTransform.localPosition = new Vector3(0, 0, 0);
 
             roundBegin();
 

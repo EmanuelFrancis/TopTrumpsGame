@@ -41,6 +41,9 @@ public class loadPlayer1Card : MonoBehaviour
     public Color32 transparent = new Color32(0, 0, 0, 0);
     public Color32 clickedColour = new Color32(3, 252, 40, 255);
 
+    public Vector3 cardPosition = new Vector3(0, 20, 0);
+    public Vector2 cardSize = new Vector2(350, 490);
+
 
     //** Declare Rigidbody2d for images **//
    public static Rigidbody2D TextBoxPhysics;
@@ -113,48 +116,52 @@ public class loadPlayer1Card : MonoBehaviour
         card.name = "P1ParentCard";
         //card.transform.parent = controller.P1mainCard.transform;
         card.transform.SetParent(controller.P1mainCard.transform);
+     //   card.transform.localScale = new Vector2(350, 490);
 
         card.AddComponent<Canvas>();   /**/
         card.AddComponent<CanvasScaler>();   /**/
         card.AddComponent<GraphicRaycaster>();
 
         rectTransform = card.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-239, 5, 0);
+    //    rectTransform.localPosition = new Vector3(0, 0, 0);
         rectTransform.sizeDelta = new Vector2(350, 490);
 
 
         GameObject card01 = (GameObject)Instantiate(card);   /**/
-     // card01.transform.parent = card.transform;   /**/
         card01.transform.SetParent(card.transform);
+       // card01.transform.localScale = new Vector2(350, 490);
         card01.name = "P1Card";   /**/
 
-        //    card01.AddComponent<Canvas>();   /**/
-        //   card01.AddComponent<CanvasScaler>();   /**/
-        //    card01.AddComponent<GraphicRaycaster>();   /**/
-        rectTransform = card01.GetComponent<RectTransform>();
-      //       rectTransform.localPosition = new Vector3(-239, 5, 0);
-            rectTransform.sizeDelta = new Vector2(350, 490);
 
+        rectTransform = card01.GetComponent<RectTransform>();
+       // rectTransform.localPosition = cardPosition;
+      //  rectTransform.sizeDelta = cardSize;
+       // card01.transform.position = cardPosition;
+     //   card01.transform.localScale = cardSize;
 
         //********************************//
         // Create the Image GameObject
         GameObject ImageBox = new GameObject();
         ImageBox.name = "P1ImageBoxParent";
-        ImageBox.transform.parent = card01.transform;
+
+     //   rectTransform = ImageBox.GetComponent<RectTransform>();
+        // ImageBox.transform.parent = card01.transform;
+        ImageBox.transform.SetParent(card.transform);
         // Instantiate(ImageBox);
         GameObject ImageP1 = (GameObject)Instantiate(ImageBox);
 
         ImageP1.name = "ImageP1";
-        ImageP1.transform.parent = card01.transform;
+ 
         ImageP1.AddComponent<Image>(); ;
         ImageP1.AddComponent<GraphicRaycaster>();
+        ImageP1.transform.SetParent(ImageBox.transform);
         LoadSprite.playerIDInt2 = 1;
         LoadSprite.CardIDInt = SelectedCardId;
         ImageP1.AddComponent<LoadSprite>();
 
         // Provide Image position and size using RectTransform.
         rectTransform = ImageP1.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-239, 75, 0);
+        rectTransform.localPosition = new Vector3(0, 75, 0);
         rectTransform.sizeDelta = new Vector2(350, 223);
 
 
@@ -162,28 +169,32 @@ public class loadPlayer1Card : MonoBehaviour
         // Create the Background Image GameObject
         GameObject ImageBackground = new GameObject();
         ImageBackground.name = "ImageBackgroundP1Parent";
-        ImageBackground.transform.parent = card01.transform;
-      //  ImageBackground.AddComponent<Image>(); ;
-       // ImageBackground.AddComponent<GraphicRaycaster>();
+      //  ImageBackground.transform.parent = card01.transform;
+        ImageBackground.transform.SetParent(card.transform);
+     //   ImageBackground.transform.localScale = card01.transform.localScale;
+        //  ImageBackground.AddComponent<Image>(); ;
+        // ImageBackground.AddComponent<GraphicRaycaster>();
 
 
-   //     rectTransform = ImageBackground.GetComponent<RectTransform>();
-    //    rectTransform.localPosition = new Vector3(-239, 5, 0);
-    //    rectTransform.sizeDelta = new Vector2(350, 490);
+        //     rectTransform = ImageBackground.GetComponent<RectTransform>();
+        //    rectTransform.localPosition = new Vector3(-239, 5, 0);
+        //    rectTransform.sizeDelta = new Vector2(350, 490);
 
         // Instantiate(ImageBox);
         GameObject ImageBackgroundP1 = (GameObject)Instantiate(ImageBackground);
 
         ImageBackgroundP1.name = "ImageBackgroundP1";
-        ImageBackgroundP1.transform.parent = ImageBackground.transform;
+        //ImageBackgroundP1.transform.parent = ImageBackground.transform;
+        ImageBackgroundP1.transform.SetParent(card.transform);
+       // ImageBackgroundP1.transform.localScale = card.transform.localScale;
         ImageBackgroundP1.AddComponent<Image>(); ;
         ImageBackgroundP1.AddComponent<GraphicRaycaster>();
         LoadBackground.playerIDInt = 1;
         ImageBackgroundP1.AddComponent<LoadBackground>();
 
         rectTransform = ImageBackgroundP1.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-478, 10, 0);
-        rectTransform.sizeDelta = new Vector2(350, 490);
+       // rectTransform.localPosition = new Vector3(-478, 10, 0);
+        rectTransform.sizeDelta = cardSize;
 
 
         // Background Colour box for attributes Parent
@@ -217,11 +228,14 @@ public class loadPlayer1Card : MonoBehaviour
         textBoxImage.AddComponent<BoxCollider2D>();
         textBoxImage.AddComponent<Rigidbody2D>();
 
+        Background = textBoxImage.GetComponent<Image>();
+        Background.color = transparent;
+
 
         //  textBoxImage.AddComponent<Image>();
-       // Background = textBoxBGBox.GetComponent<Canvas>();
-      //  Background = textBoxBGBox.GetComponent<CanvasScaler>();
-      //  Background = textBoxImage.AddComponent<GraphicRaycaster>();
+        // Background = textBoxBGBox.GetComponent<Canvas>();
+        //  Background = textBoxBGBox.GetComponent<CanvasScaler>();
+        //  Background = textBoxImage.AddComponent<GraphicRaycaster>();
 
 
 
@@ -251,7 +265,7 @@ public class loadPlayer1Card : MonoBehaviour
 
         GameObject textBox = new GameObject();
         textBox.name = "Player1CardName";
-        textBox.transform.parent = card01.transform;
+        textBox.transform.parent = card.transform;
         textBox.AddComponent<Text>();
         textBox.AddComponent<Canvas>();
 
@@ -265,7 +279,7 @@ public class loadPlayer1Card : MonoBehaviour
 
         // Provide Text position and size using RectTransform.             
         rectTransform = playerName.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-239, 215, 0);
+        rectTransform.localPosition = new Vector3(0, 215, 0);
         rectTransform.sizeDelta = new Vector2(350, 50);
 
 
@@ -292,7 +306,8 @@ public class loadPlayer1Card : MonoBehaviour
 
         textBoxApps = new GameObject();
         textBoxApps.name = "AppearancesText";
-        textBoxApps.transform.parent = ImageBackgroundP1.transform;
+       // textBoxApps.transform.parent = ImageBackgroundP1.transform;
+        textBoxApps.transform.SetParent(ImageBackgroundP1.transform);
         textBoxApps.AddComponent<Text>();
         Appearances = textBoxApps.GetComponent<Text>();
         Appearances.text = "Appearances: ";

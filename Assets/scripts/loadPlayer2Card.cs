@@ -90,13 +90,7 @@ public class loadPlayer2Card : MonoBehaviour
         GameObject card02 = (GameObject)Instantiate(card);
         card02.name = "P2Card";
         card02.transform.parent = controller.P2mainCard.transform;
-        card02.AddComponent<Canvas>();
-        card02.AddComponent<CanvasScaler>();
-        card02.AddComponent<GraphicRaycaster>();
 
-     //   rectTransform = card02.GetComponent<RectTransform>();
-     //   rectTransform.localPosition = new Vector3(474, 266, 0);
-     //   rectTransform.sizeDelta = new Vector2(948, 533);
 
         // Create the Image GameObject
         GameObject ImageBox = new GameObject();
@@ -107,15 +101,8 @@ public class loadPlayer2Card : MonoBehaviour
 
         ImageP2.name = "ImageP2";
         ImageP2.transform.parent = card02.transform;
-        ImageP2.AddComponent<Image>(); ;
-        ImageP2.AddComponent<GraphicRaycaster>();
-        LoadSprite.CardIDInt = SelectedCardId;
-        ImageP2.AddComponent<LoadSprite>();
+ 
 
-        // Provide Image position and size using RectTransform.
-        rectTransform = ImageP2.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(239, 75, 0);
-        rectTransform.sizeDelta = new Vector2(350, 223);
 
         //********************************//
         // Create the Background Image GameObject
@@ -127,15 +114,7 @@ public class loadPlayer2Card : MonoBehaviour
 
         ImageBackgroundP2.name = "ImageBackgroundP2";
         ImageBackgroundP2.transform.parent = card02.transform;
-        ImageBackgroundP2.AddComponent<Image>(); ;
-        ImageBackgroundP2.AddComponent<GraphicRaycaster>();
-      //  LoadBackground.playerIDInt = 2;
-        ImageBackgroundP2.AddComponent<LoadBackground>();
-
-        // Provide Image position and size using RectTransform.
-        rectTransform = ImageBackgroundP2.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(239, 5, 0);
-        rectTransform.sizeDelta = new Vector2(350, 490);
+       
 
         GameObject attributesBox = new GameObject();
         attributesBox.name = "AttributesBoxParent";
@@ -147,21 +126,7 @@ public class loadPlayer2Card : MonoBehaviour
         GameObject textBox2 = new GameObject();
         textBox2.name = "player2CardName";
         textBox2.transform.parent = card02.transform;
-        textBox2.AddComponent<Text>();
-        textBox2.AddComponent<Canvas>();
-
-        // Set Text component properties.
-        playerName2 = textBox2.GetComponent<Text>();
-        playerName2.font = arial;
-        playerName2.text = name.InnerXml;
-        playerName2.fontSize = 30;
-        playerName2.color = Color.black;
-        playerName2.alignment = TextAnchor.MiddleCenter;
-
-        // Provide Text position and size using RectTransform.             
-        rectTransform = playerName2.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(239, 215, 0);
-        rectTransform.sizeDelta = new Vector2(350, 50);
+      
 
 
         //**APPEARANCES**//
@@ -171,17 +136,7 @@ public class loadPlayer2Card : MonoBehaviour
         GameObject textBoxAppsImage = (GameObject)Instantiate(attributesBox);
         textBoxAppsImage.name = "AppearancesTextImage";
         textBoxAppsImage.transform.parent = ImageP2.transform;
-        textBoxAppsImage.AddComponent<Image>();
-        textBoxAppsImage.AddComponent<Canvas>();
-        textBoxAppsImage.AddComponent<CanvasScaler>();
-        textBoxAppsImage.AddComponent<GraphicRaycaster>();
-
-        rectTransform = textBoxAppsImage.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(0, -70, 0);
-        rectTransform.sizeDelta = new Vector2(200, 22);
-
-        Background = textBoxAppsImage.GetComponent<Image>();
-        Background.color = transparent;
+      
 
 
         // Create the Text GameObject.
@@ -189,31 +144,9 @@ public class loadPlayer2Card : MonoBehaviour
         //  GameObject textBoxApps = new GameObject();
         textBoxTitle.name = "TitleText";
         textBoxTitle.transform.parent = ImageBackgroundP2.transform;
-        textBoxTitle.AddComponent<Text>();
-        textBoxTitle.AddComponent<BoxCollider2D>();
-        textBoxTitle.AddComponent<Rigidbody2D>();
-        textBoxTitle.AddComponent<HoverEvent>();
-        //  textBoxApps.AddComponent<attributeClicked>(); //Registers as soon as clicked
-        textBoxTitle.AddComponent<FindSelectedAttribute>();  //Registers when clicked off like button
+       
 
-        // Set Text component properties.
-        Appearances = textBoxTitle.GetComponent<Text>();
-        Appearances.font = arial;
-        Appearances.fontStyle = FontStyle.BoldAndItalic;
-        // Appearances.fontStyle = FontStyle.Italic;
-        Appearances.text = "Pick Your Stat";
-        Appearances.fontSize = 20;
-        Appearances.alignment = TextAnchor.MiddleCenter;
-        Appearances.color = Color.black;
-
-        textBox2Physics = textBoxTitle.GetComponent<Rigidbody2D>();
-        textBox2Physics.gravityScale = 0;
-
-        // Provide Text position and size using RectTransform.
-        rectTransform = Appearances.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-89, -47, 0);
-        rectTransform.sizeDelta = new Vector2(200, 22);
-
+      
 
 
         // Create the Text GameObject.
@@ -221,8 +154,7 @@ public class loadPlayer2Card : MonoBehaviour
         textBox2Apps.name = "AppearancesText";
         textBox2Apps.transform.parent = ImageBackgroundP2.transform;
         textBox2Apps.AddComponent<Text>();
-        textBox2Apps.AddComponent<BoxCollider2D>();
-        textBox2Apps.AddComponent<Rigidbody2D>();
+
 
         // Set Text component properties.
         Appearances = textBox2Apps.GetComponent<Text>();
@@ -237,13 +169,7 @@ public class loadPlayer2Card : MonoBehaviour
         ActiveCards.P2cardAttributes[0] = AppearancesInt;
       //  Debug.Log("woo2" + ActiveCards.P2cardAttributes[0]);
 
-        textBox2Physics = textBox2Apps.GetComponent<Rigidbody2D>();
-        textBox2Physics.gravityScale = 0;
-
-        // Provide Text position and size using RectTransform.
-        rectTransform = Appearances.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(0, -70, 0);
-        rectTransform.sizeDelta = new Vector2(200, 22);
+    
 
         //**GOALS**//
         // Create the Text GameObject.
