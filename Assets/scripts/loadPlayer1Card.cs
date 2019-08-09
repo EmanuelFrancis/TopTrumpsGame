@@ -413,9 +413,7 @@ public class loadPlayer1Card : MonoBehaviour
 
         GoalsValue.AddComponent<BoxCollider2D>();
         GoalsValue.AddComponent<Rigidbody2D>();
-        //   GoalsValue.AddComponent<HoverEvent>();
-        //   GoalsValue.AddComponent<FindSelectedAttribute>();
-        //   GoalsValue.AddComponent<Button>();
+
 
         TextBoxPhysics = GoalsValue.GetComponent<Rigidbody2D>();
         TextBoxPhysics.gravityScale = 0;
