@@ -11,15 +11,23 @@ public class controller : MonoBehaviour
     public static int totalCards = 20;  /*SET NUMBER OF TOTAL CARDS */
     public static int noOfPlayers = 2;  /*SET NUMBER OF PLAYERS HERE */
     private int y = 1;
-    int rounds = 1;
+    public static int rounds = 1;
 
     RectTransform rectTransform;
 
     public static GameObject humanPlayer; /* Define parent human player GameObject */
-   public GameObject activeCard; /* Hold ID of the current card in play */
+    public GameObject activeCard; /* Hold ID of the current card in play */
+
+    public GameObject popup;
+    public static GameObject GameBG;
 
     //** is set by pickAttribute() method to randomly pick a card attribute for comparison in compare.cs **//
     public static int pickedAttribute;
+
+    public static GameObject textBoxChooseAtt;
+    public Text textBoxChooseAttText;
+
+    bool draw = false;
 
     public static GameObject ActiveplayerInstance;
     public static GameObject playerInstance01;
@@ -28,45 +36,78 @@ public class controller : MonoBehaviour
     public GameObject player1sActiveCard;
     public GameObject player2sActiveCard;
 
-    // public GameObject Player1;
+    public GameObject Player1;
 
     //Declare Lists(Arrays) that will store the parameter values to be obtained when needed
     List<int> IDs = new List<int>();
     List<int> cardsInHand = new List<int>();
     List<string> names = new List<string>();
 
-    string Player1Name = "Player1";
-    string Player2Name = "Player2";
+    public static Font arial;
+    public static Rigidbody2D TextBoxPhysics;
+
+    public static string Player1Name = "Player1";
+    public static string Player2Name = "Player2";
 
     public static List<string> playersInGame = new List<string>(); /* Holds the names of instanced players */
     public static List<string> eliminatedPlayers = new List<string>();
-    
+
 
     public static int winner = 0;
     public static int attacker;
     public static int defender;
 
-    public static int ActivePlayer=1; /* Ovrall player game is currently reading */
+    public static int ActivePlayer = 1; /* Ovrall player game is currently reading */
     public static int ActiveCard; /* Ovrall card game is currently reading */
     public static int p1ActiveCard; /* Receives the p1 picked card ID from p1pickedCard() */
     public static int p2ActiveCard; /* Receives the p2 picked card ID from p2pickedCard() */
     public static int p1SizeOfHand;
     public static int p2SizeOfHand;
 
+    public static int playersReady = 0;
+
     public static int arrayListNum = 0; /* Receives and holds the picked array slot for the picked attribute to compare from p1pickedCard() */
 
     public static GameObject P1mainCard;
     public static GameObject P2mainCard;
 
+    public static bool confirmRoundOver = false;
+
+    public Color32 winColour = new Color32(3, 252, 40, 255);
+
+    public static bool attPicked = false;
+
 
     void Start()
     {
 
-     //   GameObject StartMenu = new GameObject();
-     //   StartMenu.name = "Start Menu";
-     //   StartMenu.AddComponent<startMenu>();
- 
+        StartCoroutine(waitforKwyDown());
+
+        /* Create a Font object */
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+
+        //  StartCoroutine(timeWait());
+
+        //   GameObject StartMenu = new GameObject();
+        //   StartMenu.name = "Start Menu";
+        //   StartMenu.AddComponent<startMenu>();
+
         assignCards(); /* calls method to deal cards evenly between the players in game */
+
+     //  popup = new GameObject(); /* Creates a parent humanPlayer GO */
+     //   popup.name = "PopupGO";  /* Names the parent humanPlayer GO */
+    //    popup.AddComponent<Canvas>();
+    //    popup.AddComponent<CanvasScaler>();
+    //    popup.AddComponent<GraphicRaycaster>();
+      //  popup.AddComponent<playerInfoBar>();
+
+        GameBG = new GameObject(); /* Creates a parent humanPlayer GO */
+        GameBG.name = "PlayerBarGO";  /* Names the parent humanPlayer GO */
+        GameBG.AddComponent<Canvas>();
+        GameBG.AddComponent<CanvasScaler>();
+       GameBG.AddComponent<GraphicRaycaster>();
+        GameBG.AddComponent<playerInfoBar>();
+
 
 
         humanPlayer = new GameObject(); /* Creates a parent humanPlayer GO */
@@ -100,31 +141,10 @@ public class controller : MonoBehaviour
 
 
 
+        game();
 
-        dealCards();
 
-        int remainingNoPlayers = playersInGame.Count;
-
-        if (rounds > 1 && p1SizeOfHand == 0)
-        {
-            Debug.Log("game over P2 Wins");
-            // Time.timeScale = 0;
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-            //  roundBegin();
-        }
-        else if (rounds > 1 && p2SizeOfHand == 0)
-        {
-            Debug.Log("game over P1 Wins");
-            // Time.timeScale = 0;
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-        }
-        else if (remainingNoPlayers > 1)
-        {
-  
-            game();
-        }
-
-    }
+    } 
 
     // Update is called once per frame
     void Update()
@@ -133,12 +153,20 @@ public class controller : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
 
-              Destroy(GameObject.Find("p1MainCard"));
-              Destroy(GameObject.Find("p2MainCard"));
-;
+         //   P1mainCard.AddComponent<compare>();
+
+            Destroy(GameObject.Find("ChosenAttr"));
+            Destroy(GameObject.Find("ChosenValue"));
+            Destroy(GameObject.Find("no cards in hand"));
+            Destroy(GameObject.Find("placeInDeck"));
+            Destroy(GameObject.Find("WinParent"));
+            Destroy(GameObject.Find("WinBox"));
+            Destroy(GameObject.Find("p1MainCard"));
+            Destroy(GameObject.Find("p2MainCard"));
+            
             Destroy(GameObject.Find("P1ParentCard"));
             Destroy(GameObject.Find("P2ParentCard"));
- 
+
             Destroy(GameObject.Find("P2ParentCard"));
             Destroy(GameObject.Find("P1imageSpriteInstance"));
             Destroy(GameObject.Find("P1SpriteParent"));
@@ -148,77 +176,85 @@ public class controller : MonoBehaviour
             Destroy(GameObject.Find("P1imageBGSpriteInstance"));
             Destroy(GameObject.Find("P1SpriteBG"));
             Destroy(GameObject.Find("P2imageBGSpriteInstance"));
-            Destroy(GameObject.Find("P2SpriteBG"));
-
-
-            roundBegin();
-
+            Destroy(GameObject.Find("P2SpriteBG"));       
         }
 
-        if (rounds > 1 && p1SizeOfHand == 0)
+        if(attPicked == true)
         {
-            Debug.Log("game over P2 Wins");
-            // Time.timeScale = 0;
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-            //  roundBegin();
-            playerHands.player1.Clear();
-            playerHands.player2.Clear();
-        }
-        else if (rounds > 1 && p2SizeOfHand == 0)
-        {
-            Debug.Log("game over P1 Wins");
-            // Time.timeScale = 0;
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-            playerHands.player1.Clear();
-            playerHands.player2.Clear();
-        }
+            attPicked = false;
+            P1mainCard.AddComponent<compare>();
+            P1mainCard.AddComponent<winnerScreen>();
+            waitforKwyDown2();
 
-
+        }
 
     }
 
     //*FUNCTIONS*//
 
-    void game()
+ public   void game()
     {
 
 
+        if (rounds == 1)
+        {
 
+            dealCards();
+            GameObject updateBars = new GameObject();
+            updateBars.name = "update bars";
+            updateBars.AddComponent<playerInfoValues>();
+        }
+        else if (rounds > 1)
+        {
+
+            destroyObjects();
+        }
+        //     if (confirmRoundOver == true)
+        //     {
+
+        gameOverCheck();
 
 
 
         roundBegin();
+        //       }
+        //        roundBegin();
 
-        return;
+
+
+        //
+        //     if (playersReady == 1)
+        //    {
+        //         roundBegin();
+        //      }
+
+
+
+
+      //  rounds++;
+
+
+
+
+        //  return;
     }
 
 
-    void roundBegin()
+   public void roundBegin()
     {
-
+        confirmRoundOver = false;
+        ChooseWhosTurn();
         Debug.Log("Round " + rounds);
 
-        //  Debug.Log("p1SizeOfHand" + p1SizeOfHand);
-        //   Debug.Log("p2SizeOfHand" + p2SizeOfHand);
 
-  
-
-
-        ChooseWhosTurn();
-
-        Debug.Log("Player" + attacker +"turn");
-
-
-
-        //Pick Random Card
         p1pickCard();
 
         P1mainCard = new GameObject();
         P1mainCard.name = "p1MainCard";
-       // P1mainCard.transform.parent = playerInstance01.transform;
+
         P1mainCard.AddComponent<loadPlayer1Card>();
 
-      //  ActivePlayer = 2;
+        //  ActivePlayer = 2;
 
 
         //Pick Random Card
@@ -226,40 +262,31 @@ public class controller : MonoBehaviour
 
         P2mainCard = new GameObject();
         P2mainCard.name = "p2MainCard";
-     //   P2mainCard.transform.parent = playerInstance02.transform;
+        //   P2mainCard.transform.parent = playerInstance02.transform;
         P2mainCard.AddComponent<loadPlayer2Card>();
 
-        pickAttribute();
-        P1mainCard.AddComponent<compare>();
 
-        //attacker pick value
+        Debug.Log("Player" + attacker +"turn");
 
 
+        GameObject popupMenu = new GameObject();
+        popupMenu.name = "popupMenu";
+        popupMenu.AddComponent<loadPopup>();
+     //   SelectAttGraphic();
+    //    Debug.Log("grafic");
+        waitforKwyDown();
 
-
-
-
-
-        //determine result
-
-
-        //round consequences
+        //     pickAttribute();
+      //  P1mainCard.AddComponent<compare>();
 
 
 
 
+      //  rounds++;
 
 
-        rounds++;
-        return;
+      //  destroyObjects();
 
-      
-        
-
- 
-
-
-        //end round
     }
 
 
@@ -368,6 +395,9 @@ public class controller : MonoBehaviour
 
     void ChooseWhosTurn()
     {
+      //  playersReady = 0;
+
+
 
         if (winner == 0)
         {
@@ -381,6 +411,14 @@ public class controller : MonoBehaviour
             defender = attacker + 1;
             ActiveplayerInstance = playerInstance02;
         }
+   //     Debug.Log("playersReady1" + playersReady);
+     //   playerTurnScreen();
+       // playersReady = 0;
+   //     timeWait();
+   //     Debug.Log("playersReady2" + playersReady);
+      //  Destroy(GameObject.Find("PlayerTurnScrnParent"));
+
+
     }
 
     void OnMouseDown()
@@ -485,33 +523,33 @@ public class controller : MonoBehaviour
         }
     }
 
-    void pickAttribute()
-    {
-        int attrListNum;
+  //  void pickAttribute()
+  //  {
+   //     int attrListNum;
         // int noOfattributes = ActiveCards.P1cardAttributes.Length;
 
      //   Debug.Log("array length" + ActiveCards.P1cardAttributes.Length);
 
-        if (attacker == 1)
-        {
-            attrListNum = Random.Range(0, 5);
-            Debug.Log("P1 picked array slot" + attrListNum);
-            //  attrListNum = 2;
-            pickedAttribute = attrListNum;
+ //       if (attacker == 1)
+  //      {
+  //          attrListNum = Random.Range(0, 5);
+  //          Debug.Log("P1 picked array slot" + attrListNum);
+//            //  attrListNum = 2;
+ //           pickedAttribute = attrListNum;
        //     Debug.Log("current attributes" + attrListNum);
         //    Debug.Log("picked attribute" + pickedAttribute);
-        }
-        else
-        {
-            attrListNum = Random.Range(0, 5);
-            Debug.Log("P2 picked array slot" + attrListNum);
+   //     }
+  //      else
+  //      {
+ //           attrListNum = Random.Range(0, 5);
+ //           Debug.Log("P2 picked array slot" + attrListNum);
             //   attrListNum = 2;
-            pickedAttribute = attrListNum;
+  //          pickedAttribute = attrListNum;
       //      Debug.Log("current attributes" + attrListNum);
-        }
+   //     }
             
         
-    }
+ //   }
 
   
     void takeCard()
@@ -519,9 +557,188 @@ public class controller : MonoBehaviour
 
     }
 
-    void gameOver()
+    void gameOverCheck()
+    {
+        int remainingNoPlayers = playersInGame.Count;
+
+        if (rounds > 1 && p1SizeOfHand == 0)
+        {
+            Debug.Log("game over P2 Wins");
+            // Time.timeScale = 0;
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            //  roundBegin();
+        }
+        else if (rounds > 1 && p2SizeOfHand == 0)
+        {
+            Debug.Log("game over P1 Wins");
+            // Time.timeScale = 0;
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        }
+    }
+
+    void playerTurnScreen()
     {
 
+
+        GameObject PlayerTurnScrnParent = new GameObject();
+        PlayerTurnScrnParent.name = "PlayerTurnScrnParent";
+        PlayerTurnScrnParent.AddComponent<Text>();
+        PlayerTurnScrnParent.AddComponent<Canvas>();   /**/
+        PlayerTurnScrnParent.AddComponent<CanvasScaler>();
+        PlayerTurnScrnParent.AddComponent<GraphicRaycaster>();
+        PlayerTurnScrnParent.AddComponent<BoxCollider2D>();
+        PlayerTurnScrnParent.AddComponent<Rigidbody2D>();
+
+
+        TextBoxPhysics = PlayerTurnScrnParent.GetComponent<Rigidbody2D>();
+        TextBoxPhysics.gravityScale = 0;
+
+        GameObject PlayerTurnScrn = (GameObject)Instantiate(PlayerTurnScrnParent);
+        PlayerTurnScrn.name = "PlayerTurnScrn";
+        PlayerTurnScrn.transform.SetParent(PlayerTurnScrnParent.transform);
+      //  PlayerTurnScrn.AddComponent<Text>();
+
+        Text PlayerTurnScrnText = PlayerTurnScrn.GetComponent<Text>();
+        PlayerTurnScrnText.text = "Player " + attacker + " Turn";
+        PlayerTurnScrnText.fontStyle = FontStyle.Bold;
+        PlayerTurnScrnText.font = arial;
+        PlayerTurnScrnText.fontSize = 70;
+        PlayerTurnScrnText.alignment = TextAnchor.MiddleCenter;
+        PlayerTurnScrnText.color = Color.white;
+
+        Canvas canvas1 = PlayerTurnScrnParent.GetComponent<Canvas>();
+        canvas1.renderMode = RenderMode.ScreenSpaceOverlay;
+
+
+        // Provide Text position and size using RectTransform.
+        rectTransform = PlayerTurnScrnText.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(0, 0, 10);
+        rectTransform.sizeDelta = new Vector2(500, 300);
+
+       // return;
     }
+
+  //  IEnumerator timeWait()
+  //  {
+  //      while (!Input.GetKeyDown("y"))
+ //       {
+ //           yield return null;
+ //       }
+
+       // playersReady = 1;
+       // roundBegin();
+ //       Debug.Log("playersReady3");
+//    }
+
+void createCards()
+{
+        //  if (playersReady == 1)
+        //  {
+        Debug.Log("oiii");
+//        Destroy(GameObject.Find("PlayerTurnScrnParent"));
+ //       Destroy(GameObject.Find("PlayerTurnScrn"));
+        //Pick Random Card
+        p1pickCard();
+
+        P1mainCard = new GameObject();
+        P1mainCard.name = "p1MainCard";
+    //    Debug.Log("oiiiiiii");
+        // P1mainCard.transform.parent = playerInstance01.transform;
+        P1mainCard.AddComponent<loadPlayer1Card>();
+
+        //  ActivePlayer = 2;
+
+
+        //Pick Random Card
+        p2pickCard();
+
+        P2mainCard = new GameObject();
+        P2mainCard.name = "p2MainCard";
+        //   P2mainCard.transform.parent = playerInstance02.transform;
+        P2mainCard.AddComponent<loadPlayer2Card>();
+
+          //  pickAttribute();
+         //   P1mainCard.AddComponent<compare>();
+      
+
+        //  playersReady = 0;
+ 
+
+   //     rounds++;
+       // game();
+     //   }
+}
+
+    void destroyObjects()
+    {
+      //  Destroy(GameObject.Find("update bars2"));
+      //  Destroy(GameObject.Find("ChosenAttr"));
+      //  Destroy(GameObject.Find("ChosenValue"));
+      //  Destroy(GameObject.Find("no cards in hand"));
+     //   Destroy(GameObject.Find("placeInDeck"));
+        Destroy(GameObject.Find("WinParent"));
+        Destroy(GameObject.Find("WinBox"));
+        Destroy(GameObject.Find("p1MainCard"));
+        Destroy(GameObject.Find("p2MainCard"));
+
+        Destroy(GameObject.Find("P1ParentCard"));
+        Destroy(GameObject.Find("P2ParentCard"));
+
+        Destroy(GameObject.Find("P2ParentCard"));
+        Destroy(GameObject.Find("P1imageSpriteInstance"));
+        Destroy(GameObject.Find("P1SpriteParent"));
+        Destroy(GameObject.Find("P2imageSpriteInstance"));
+        Destroy(GameObject.Find("P2SpriteParent"));
+
+        Destroy(GameObject.Find("P1imageBGSpriteInstance"));
+        Destroy(GameObject.Find("P1SpriteBG"));
+        Destroy(GameObject.Find("P2imageBGSpriteInstance"));
+        Destroy(GameObject.Find("P2SpriteBG"));
+    }
+
+    IEnumerator waitforKwyDown()
+    {
+        while (!Input.GetKeyDown("y"))
+        {
+       //     Debug.Log("null");
+
+            yield return null;
+
+
+        }
+
+        //   controller newRound = FindObjectOfType<controller>();
+        // newRound.game();
+        //  controller.roundBegin();
+        Destroy(GameObject.Find("SelectAttParent"));
+        Destroy(GameObject.Find("textBoxChooseAtt"));
+        Destroy(GameObject.Find("ChooseTextGO"));
+        Debug.Log("playersReady3");
+
+
+    }
+
+    IEnumerator waitforKwyDown2()
+    {
+        while (!Input.GetKeyDown("u"))
+        {
+
+
+            yield return null;
+
+
+        }
+
+        controller newRound = FindObjectOfType<controller>();
+        newRound.game();
+        //  controller.roundBegin();
+        Debug.Log("playersReady3");
+
+
+    }
+
+
+
+
 
 }

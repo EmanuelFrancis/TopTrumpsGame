@@ -19,9 +19,9 @@ public class HoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         loadPlayer1Card.attributesBoxColour = 1; //Hover Colour
-        Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
+     //   Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
 
-        Debug.Log(pointerEventData.pointerEnter + "pinterEventData");
+     //   Debug.Log(pointerEventData.pointerEnter + "pinterEventData");
         // Debug.Log(loadPlayer1Card.textBoxGoals.name + "TBG");
         //  Debug.Log(loadPlayer1Card.textBoxApps + "TBA");
 
@@ -97,15 +97,15 @@ public class HoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (loadPlayer1Card.attributesBoxColour == 4)  //Null value no colour
         {
-            Debug.Log("=3" + loadPlayer1Card.attributesBoxColour);
-            Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
+   //         Debug.Log("=3" + loadPlayer1Card.attributesBoxColour);
+    //        Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
 
         }
         else if (loadPlayer1Card.attributesBoxColour != 3)
         { //if colour is NOT set to selected colour
             loadPlayer1Card.attributesBoxColour = 2;  //Transparent
-            Debug.Log("abc");
-            Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
+    //        Debug.Log("abc");
+    //        Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
         }
 
     }

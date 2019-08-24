@@ -55,12 +55,16 @@ public class loadPlayer1Card : MonoBehaviour
 
 
 
+
     //** Receives and holds the current p1 card id **/
     int SelectedCardId = controller.p1ActiveCard;
 
 
     //*** Declare a string version of current p1 id *//
     public static string SelectCardId;
+
+    public static string PlayerName;
+    public static string appearancesTitle;
 
     public static RectTransform rectTransform;
 
@@ -282,6 +286,8 @@ public class loadPlayer1Card : MonoBehaviour
         rectTransform.localPosition = new Vector3(0, 215, 0);
         rectTransform.sizeDelta = new Vector2(350, 50);
 
+        Debug.Log(playerName.text);
+
 
         //**-------APPEARANCES-------------**//
         //Create Text Background Colour Box
@@ -305,12 +311,17 @@ public class loadPlayer1Card : MonoBehaviour
 
 
         textBoxApps = new GameObject();
+        
         textBoxApps.name = "AppearancesText";
+       // textBoxApps.tag = "apps";
        // textBoxApps.transform.parent = ImageBackgroundP1.transform;
         textBoxApps.transform.SetParent(ImageBackgroundP1.transform);
         textBoxApps.AddComponent<Text>();
         Appearances = textBoxApps.GetComponent<Text>();
         Appearances.text = "Appearances: ";
+       // Appearances.tag = "apps";
+        ActiveCards.AttributesNames[0] = "Appearances";
+        appearancesTitle = Appearances.text;
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.font = arial;
         Appearances.fontSize = fontSize;
@@ -362,7 +373,7 @@ public class loadPlayer1Card : MonoBehaviour
         AppearancesInt = stringToint(apps.InnerXml);
         ActiveCards.P1cardAttributes[0] = AppearancesInt;
 
-        Debug.Log("AppearancesInt " + AppearancesInt);
+     //   Debug.Log("AppearancesInt " + AppearancesInt);
 
         // Provide Text position and size using RectTransform.
         rectTransform = Appearances.GetComponent<RectTransform>();
@@ -395,6 +406,7 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances = textBoxGoals.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = "Goals: ";
+        ActiveCards.AttributesNames[1] = "Goals";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
@@ -466,6 +478,7 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances = textBoxAssists.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = "Assists: ";
+        ActiveCards.AttributesNames[2] = "Assists";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
@@ -539,6 +552,7 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances = textBoxTeams.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = "Teams: ";
+        ActiveCards.AttributesNames[3] = "Teams";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
@@ -605,6 +619,7 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances = textBoxPrems.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = "Premier Leagues: ";
+        ActiveCards.AttributesNames[4] = "Prems";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
@@ -674,6 +689,7 @@ public class loadPlayer1Card : MonoBehaviour
         Appearances = textBoxBookings.GetComponent<Text>();
         Appearances.font = arial;
         Appearances.text = "Bookings: ";
+        ActiveCards.AttributesNames[5] = "Bookings";
         Appearances.fontStyle = FontStyle.Bold;
         Appearances.fontSize = fontSize;
         Appearances.alignment = TextAnchor.MiddleLeft;
@@ -773,6 +789,12 @@ public class loadPlayer1Card : MonoBehaviour
 
         //    playerCardClass.playerCard p1Card = new playerCardClass.playerCard(SelectedCardId, textBox.name, AppearancesInt, GoalsInt, AssistsInt, TeamsInt, PremsInt, BookingsInt);
 
+
+       // findPlaceInDeck();
+       // playerInfoBar.plac
+
+
+
     }
 
 
@@ -788,22 +810,23 @@ public class loadPlayer1Card : MonoBehaviour
         {
             Background.color = hoverColour;
             attributesBoxColour = 0; //reset event so not always returning ==1
-            Debug.Log("boxColour =" + attributesBoxColour);
+        //    Debug.Log("boxColour =" + attributesBoxColour);
 
         }
         else if (attributesBoxColour == 2)
         {
             Background.color = transparent;
             attributesBoxColour = 0;  //reset event so not always returning ==2   
-            Debug.Log("boxColour =" + attributesBoxColour);
+        //    Debug.Log("boxColour =" + attributesBoxColour);
         }
         else if (attributesBoxColour == 3)
         {
             Background.color = clickedColour;
             //  timer -= Time.deltaTime;
             //      textBoxAppsColour = 4;  //reset event so not always returning ==2  
+            attributesBoxColour = 4;
 
-            Debug.Log("boxColour =" + attributesBoxColour);
+         //   Debug.Log("boxColour =" + attributesBoxColour);
 
         }
 
@@ -833,6 +856,8 @@ public class loadPlayer1Card : MonoBehaviour
         //   ActiveCards.P1cardAttributes[0] = AppearancesInt;
 
     }
+
+
 
 
 }
