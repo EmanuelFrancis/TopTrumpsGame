@@ -277,6 +277,7 @@ public class loadPlayer1Card : MonoBehaviour
         playerName = textBox.GetComponent<Text>();
         playerName.font = arial;
         playerName.text = name.InnerXml;
+        PlayerName = playerName.text;
         playerName.fontSize = 30;
         playerName.color = Color.black;
         playerName.alignment = TextAnchor.MiddleCenter;

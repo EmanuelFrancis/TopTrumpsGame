@@ -53,6 +53,7 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
         }else if (eventData.pointerPress.name == "GoalsText")
         {
             controller.pickedAttribute = 1;
+            Debug.Log(controller.pickedAttribute);
         }
         else if (eventData.pointerPress.name == "AssistsText")
         {
@@ -94,6 +95,7 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
        
 
         Debug.Log(eventData.pointerPress + "was clicked");
+        
         controller.attPicked = true;
         //  Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
     }

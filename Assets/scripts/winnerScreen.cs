@@ -26,6 +26,8 @@ public class winnerScreen : MonoBehaviour {
 
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
+        
+
         GameObject winnerBG = new GameObject();
         winnerBG.name = "winnerBGParent";
         winnerBG.transform.SetParent(controller.GameBG.transform);
@@ -51,8 +53,8 @@ public class winnerScreen : MonoBehaviour {
         TextBoxPhysics.gravityScale = 0;
 
         rectTransform = textBoxWin.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(319, 473, 10);
-        rectTransform.sizeDelta = new Vector2(500, 300);
+        rectTransform.localPosition = new Vector3(319, 850, 10);
+        rectTransform.sizeDelta = new Vector2(500, 200);
 
 
         GameObject WinTextGO = new GameObject();
@@ -62,8 +64,9 @@ public class winnerScreen : MonoBehaviour {
         WinTextGO.AddComponent<Canvas>();
 
         WinText = WinTextGO.GetComponent<Text>();
+        Text WinText2 = WinTextGO.GetComponent<Text>();
 
-       // controller.P1mainCard.AddComponent<compare>();
+        // controller.P1mainCard.AddComponent<compare>();
 
         if (draw == true)
         {
@@ -71,7 +74,92 @@ public class winnerScreen : MonoBehaviour {
         }
         else
         {
+
+           // Text playerName = WinTextGO.GetComponent<Text>();
+            string playerName = loadPlayer1Card.PlayerName;
+
+
             WinText.text = "Player " + controller.winner + " wins!";
+
+            GameObject ChosenAttr = new GameObject();
+            ChosenAttr.name = "ChosenAttr";
+            ChosenAttr.transform.SetParent(textBoxWin.transform);
+            ChosenAttr.AddComponent<Text>();
+            ChosenAttr.AddComponent<Canvas>();
+
+            Text ChosenAttrText = ChosenAttr.GetComponent<Text>();
+            ChosenAttrText.font = arial;
+           // findPlaceInDeck();
+            ChosenAttrText.text = "P 1  " + loadPlayer1Card.PlayerName + ActiveCards.AttributesNames[controller.pickedAttribute];
+            ChosenAttrText.fontSize = 30;
+            ChosenAttrText.color = Color.white;
+            ChosenAttrText.alignment = TextAnchor.MiddleLeft;
+
+            rectTransform = ChosenAttrText.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(-7, 70, 0);
+            rectTransform.sizeDelta = new Vector2(488, 50);
+
+
+            GameObject ChosenValue = new GameObject();
+            ChosenValue.name = "ChosenValue";
+            ChosenValue.transform.SetParent(textBoxWin.transform);
+            ChosenValue.AddComponent<Text>();
+            ChosenValue.AddComponent<Canvas>();
+
+            Text ChosenValueText = ChosenValue.GetComponent<Text>();
+            ChosenValueText.font = arial;
+           // findPlaceInDeck();
+            ChosenValueText.text = (ActiveCards.P1cardAttributes[controller.pickedAttribute].ToString());
+            ChosenValueText.fontSize = 30;
+            ChosenValueText.color = Color.white;
+            ChosenValueText.alignment = TextAnchor.MiddleRight;
+
+            rectTransform = ChosenValueText.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(206, 20, 0);
+            rectTransform.sizeDelta = new Vector2(80, 50);
+
+
+
+
+
+            GameObject Chosen2Attr = new GameObject();
+            Chosen2Attr.name = "Chosen2Attr";
+            Chosen2Attr.transform.SetParent(textBoxWin.transform);
+            Chosen2Attr.AddComponent<Text>();
+            Chosen2Attr.AddComponent<Canvas>();
+
+            Text Chosen2AttrText = Chosen2Attr.GetComponent<Text>();
+            Chosen2AttrText.font = arial;
+            // findPlaceInDeck();
+            Chosen2AttrText.text = "P 2  " + loadPlayer2Card.PlayerName + ActiveCards.AttributesNames[controller.pickedAttribute];
+            Chosen2AttrText.fontSize = 30;
+            Chosen2AttrText.color = Color.white;
+            Chosen2AttrText.alignment = TextAnchor.MiddleLeft;
+
+            rectTransform = Chosen2AttrText.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(-7, -70, 0);
+            rectTransform.sizeDelta = new Vector2(488, 50);
+
+
+            GameObject Chosen2Value = new GameObject();
+            Chosen2Value.name = "Chosen2Value";
+            Chosen2Value.transform.SetParent(textBoxWin.transform);
+            Chosen2Value.AddComponent<Text>();
+            Chosen2Value.AddComponent<Canvas>();
+
+            Text Chosen2ValueText = Chosen2Value.GetComponent<Text>();
+            Chosen2ValueText.font = arial;
+            // findPlaceInDeck();
+            Chosen2ValueText.text = (ActiveCards.P2cardAttributes[controller.pickedAttribute].ToString());
+            Chosen2ValueText.fontSize = 30;
+            Chosen2ValueText.color = Color.white;
+            Chosen2ValueText.alignment = TextAnchor.MiddleRight;
+
+            rectTransform = Chosen2ValueText.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(206, -26, 0);
+            rectTransform.sizeDelta = new Vector2(80, 50);
+
+
         }
         WinText.font = arial;
         // WinText.text = controller.Player1Name;
@@ -89,4 +177,8 @@ public class winnerScreen : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
+    
+
 }

@@ -37,14 +37,15 @@ public class compare : MonoBehaviour {
         /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
+        
 
+        Debug.Log(controller.pickedAttribute);
+        Debug.Log("rounds" + controller.rounds);
 
-
-
-        if (controller.rounds == 1)
-        {
-            return;
-        }
+       // if (controller.rounds == 1)
+      //  {
+       //     return;
+      //  }
 
         player1ObtainedValue = ActiveCards.P1cardAttributes[controller.pickedAttribute];
         Debug.Log("p1 value " + player1ObtainedValue);

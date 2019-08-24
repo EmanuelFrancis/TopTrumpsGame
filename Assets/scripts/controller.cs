@@ -183,6 +183,7 @@ public class controller : MonoBehaviour
         {
             attPicked = false;
             P1mainCard.AddComponent<compare>();
+            Debug.Log("winner player" + controller.winner);
             P1mainCard.AddComponent<winnerScreen>();
             waitforKwyDown2();
 

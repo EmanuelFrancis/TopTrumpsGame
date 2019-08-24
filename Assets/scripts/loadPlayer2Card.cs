@@ -16,6 +16,8 @@ public class loadPlayer2Card : MonoBehaviour
     string changeMeToInt;
     int IntValue;
 
+    public static string PlayerName;
+
     public static int AppearancesInt;
     public static int GoalsInt;
     public static int AssistsInt;
@@ -126,8 +128,8 @@ public class loadPlayer2Card : MonoBehaviour
         GameObject textBox2 = new GameObject();
         textBox2.name = "player2CardName";
         textBox2.transform.parent = card02.transform;
-      
 
+        PlayerName = name.InnerXml;
 
         //**APPEARANCES**//
 
