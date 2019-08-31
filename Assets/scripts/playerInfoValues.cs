@@ -28,6 +28,10 @@ public class playerInfoValues : MonoBehaviour {
         //   Canvas canvas1 = controller.GameBG.GetComponent<Canvas>();
         //   canvas1.renderMode = RenderMode.ScreenSpaceOverlay;
 
+        findPlaceInDeck();
+
+        Destroy(GameObject.Find("no cards in hand"));
+
         GameObject noCardsInHandTitle = new GameObject();
         noCardsInHandTitle.name = "noCardsInHandTitle";
         noCardsInHandTitle.transform.SetParent(playerInfoBar.P1Bar.transform);
@@ -36,7 +40,7 @@ public class playerInfoValues : MonoBehaviour {
 
         Text noCardsInHandTitleText = noCardsInHandTitle.GetComponent<Text>();
         noCardsInHandTitleText.font = arial;
-        findPlaceInDeck();
+
         noCardsInHandTitleText.text = "Cards In Hand";
         noCardsInHandTitleText.fontSize = 20;
         noCardsInHandTitleText.color = Color.black;
@@ -62,7 +66,6 @@ public class playerInfoValues : MonoBehaviour {
         rectTransform = noCardsLeft.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(-100, -11, 0);
         rectTransform.sizeDelta = new Vector2(80, 50);
-
 
         GameObject placeInDeckTitle = new GameObject();
         placeInDeckTitle.name = "placeInDeckTitle";
@@ -140,22 +143,7 @@ public class playerInfoValues : MonoBehaviour {
         rectTransform.sizeDelta = new Vector2(80, 50);
 
 
-        GameObject roundNo = new GameObject();
-        roundNo.name = "HUMANroundNo";
-        roundNo.transform.SetParent(playerInfoBar.P1Bar.transform);
-        roundNo.AddComponent<Text>();
-        roundNo.AddComponent<Canvas>();
 
-        Text roundNoText = roundNo.GetComponent<Text>();
-        roundNoText.font = arial;
-        roundNoText.text = "Round " + (controller.rounds.ToString());
-        roundNoText.fontSize = 30;
-        roundNoText.color = Color.black;
-        roundNoText.alignment = TextAnchor.MiddleCenter;
-
-        rectTransform = roundNoText.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-240, 118, 0);
-        rectTransform.sizeDelta = new Vector2(150, 50);
 
 
 

@@ -138,7 +138,7 @@ public class controller : MonoBehaviour
         ActiveplayerInstance = (GameObject)Instantiate(humanPlayer); /* creates an instance of the humanPlayer GO called playerInstance01 */
         ActiveplayerInstance.name = "ActivePlayer"; /* Sets the name of the p1 instance to whatever has been specified at Player1Name */
 
-
+        dealCards();
         createInfoBars();
         game.AddComponent<game>();
       //  game();
@@ -696,7 +696,54 @@ void createCards()
     }
 
 
+    //Deal cards to each player one at a time
+    void dealCards()
+    {
+        int cardsToDeal = controller.totalCards; //gets the amount of cards available for dealing set in controller.cs
+        int c = 1;  //set starting amount of cards already dealt, updated ++ after each card is given
 
+        for (c = c; c < cardsToDeal;) //loops through the amount of cards left to deal
+        {
+
+
+
+            for (int x = 1; x <= controller.noOfPlayers; x++) //loops through the number of players so a card can be dealt to each
+            {
+
+                int dealCard = c;
+                if (x == 1)
+                {
+                    playerHands.player1.Add(dealCard); //stores value (card ID) into players hand in playerHands.cs
+
+                    c++;
+
+                }
+                else if (x == 2 && c <= cardsToDeal)
+                {
+                    playerHands.player2.Add(dealCard);
+
+                    c++;
+
+                }
+                else if (x == 3 && c <= cardsToDeal)
+                {
+                    playerHands.player3.Add(dealCard);
+
+                    c++;
+
+                }
+                else if (x == 4 && c <= cardsToDeal)
+                {
+                    playerHands.player4.Add(dealCard);
+
+                    c++;
+
+                }
+            }
+        }
+        p1SizeOfHand = playerHands.player1.Count;
+        p2SizeOfHand = playerHands.player2.Count;
+    }
 
 
 }

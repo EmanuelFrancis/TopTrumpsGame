@@ -22,8 +22,8 @@ public class compare : MonoBehaviour {
     int player1ObtainedValue;
     int player2ObtainedValue;
 
-    int sizeofp1hand;
-    int sizeofp2hand;
+    public static int sizeofp1hand;
+    public static int sizeofp2hand;
 
     bool draw = false;
 

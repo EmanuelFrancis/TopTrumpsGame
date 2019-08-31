@@ -26,7 +26,8 @@ public class winnerScreen : MonoBehaviour {
 
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
-        
+
+        StartCoroutine(waitforyDown());
 
         GameObject winnerBG = new GameObject();
         winnerBG.name = "winnerBGParent";
@@ -171,16 +172,89 @@ public class winnerScreen : MonoBehaviour {
         rectTransform.localPosition = new Vector3(0, 0, 0);
         rectTransform.sizeDelta = new Vector2(1000, 1000);
 
-      //  controller.rounds++;
-    
+        //  controller.rounds++;
+
+        waitforyDown();
 }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    IEnumerator waitforyDown()
+    {
+        while (!Input.GetKeyDown("y"))
+        {
+            //     Debug.Log("null");
+
+            yield return null;
 
 
-    
+        }
+
+        //   controller newRound = FindObjectOfType<controller>();
+        // newRound.game();
+        //  controller.roundBegin();
+        Destroy(controller.game.GetComponent<game>());
+        destroyObjects();
+        controller.game.AddComponent<game>();
+
+        Destroy(GameObject.Find("winnerBGParent"));
+        Destroy(GameObject.Find("textBoxWin"));
+        Destroy(GameObject.Find("HUMANWinTextGO"));
+        Destroy(GameObject.Find("ChosenAttr"));
+        Destroy(GameObject.Find("ChosenValue"));
+             Destroy(GameObject.Find("Chosen2Attr"));
+            Destroy(GameObject.Find("Chosen2Value"));
+      //  Debug.Log("playersReady3"); 
+
+
+    }
+
+
+    void destroyObjects()
+    {
+        //   Destroy(GameObject.Find("update bars2"));
+          //   Destroy(GameObject.Find("ChosenAttr"));
+         //   Destroy(GameObject.Find("ChosenValue"));
+          //   Destroy(GameObject.Find("Chosen2Attr"));
+        //    Destroy(GameObject.Find("Chosen2Value"));
+       //   Destroy(GameObject.Find("no cards in hand"));
+           Destroy(GameObject.Find("placeInDeck"));
+        //    Destroy(GameObject.Find("WinParent"));
+        //    Destroy(GameObject.Find("WinBox"));
+        Destroy(GameObject.Find("p1MainCard"));
+        Destroy(GameObject.Find("p2MainCard"));
+
+        Destroy(GameObject.Find("P1ParentCard"));
+        Destroy(GameObject.Find("P2ParentCard"));
+
+        //     Destroy(GameObject.Find("P2ParentCard"));
+        Destroy(GameObject.Find("P1imageSpriteInstance"));
+        Destroy(GameObject.Find("P1SpriteParent"));
+        Destroy(GameObject.Find("P2imageSpriteInstance"));
+        Destroy(GameObject.Find("P2SpriteParent"));
+        //
+        //    Destroy(GameObject.Find("P1imageBGSpriteInstance"));
+        //     Destroy(GameObject.Find("P1SpriteBG"));
+        //    Destroy(GameObject.Find("P2imageBGSpriteInstance"));
+        //    Destroy(GameObject.Find("P2SpriteBG"));
+
+        //     Destroy(GameObject.Find("p1MainCard"));
+        //     Destroy(GameObject.Find("p2MainCard"));
+
+        //    Destroy(GameObject.Find("winnerBGParent"));
+        //    Destroy(GameObject.Find("textBoxWin"));
+        //   Destroy(GameObject.Find("HUMANWinTextGO"));
+
+        //  Destroy(GameObject.Find("P1Bar"));
+        //  Destroy(GameObject.Find("P2Bar"));
+        //   Destroy(GameObject.Find("PlayerBarParent"));
+       //    Destroy(GameObject.Find("HUMANPLAYERNAME"));
+        Destroy(GameObject.Find("HUMANroundNo"));
+
+
+    }
+
 
 }

@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class game : MonoBehaviour {
+    public RectTransform rectTransform;
+    public Font arial;
+    // Use this for initialization
+    void Start () {
 
-	// Use this for initialization
-	void Start () {
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
         Debug.Log("gameMethod started");
 
@@ -16,8 +20,9 @@ public class game : MonoBehaviour {
         {
 
         
-        dealCards();
-        GameObject updateBars = new GameObject();
+       // dealCards();
+         //   createInfoBars();
+            GameObject updateBars = new GameObject();
         updateBars.name = "update bars";
         updateBars.GetComponent<playerInfoValues>();
         }
@@ -89,7 +94,22 @@ public class game : MonoBehaviour {
     public void roundBegin()
     {
 
+        GameObject roundNo = new GameObject();
+        roundNo.name = "HUMANroundNo";
+        roundNo.transform.SetParent(playerInfoBar.P1Bar.transform);
+        roundNo.AddComponent<Text>();
+        roundNo.AddComponent<Canvas>();
 
+        Text roundNoText = roundNo.GetComponent<Text>();
+        roundNoText.font = arial;
+        roundNoText.text = "Round " + (controller.rounds.ToString());
+        roundNoText.fontSize = 30;
+        roundNoText.color = Color.black;
+        roundNoText.alignment = TextAnchor.MiddleCenter;
+
+        rectTransform = roundNoText.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(-240, 118, 0);
+        rectTransform.sizeDelta = new Vector2(150, 50);
 
         Debug.Log("roundBeginMethod started");
 
@@ -261,7 +281,37 @@ public class game : MonoBehaviour {
         }
     }
 
+    void createInfoBars()
+    {
+        controller.GameBG = new GameObject(); /* Creates a parent humanPlayer GO */
+        controller.GameBG.name = "PlayerBarGO";  /* Names the parent humanPlayer GO */
+        controller.GameBG.AddComponent<Canvas>();
+        controller.GameBG.AddComponent<CanvasScaler>();
+        controller.GameBG.AddComponent<GraphicRaycaster>();
+        controller.GameBG.AddComponent<playerInfoBar>();
+    }
 
+    IEnumerator waitforKwyDown()
+    {
+        while (!Input.GetKeyDown("y"))
+        {
+            //     Debug.Log("null");
+
+            yield return null;
+
+
+        }
+
+        //   controller newRound = FindObjectOfType<controller>();
+        // newRound.game();
+        //  controller.roundBegin();
+        Destroy(GameObject.Find("SelectAttParent"));
+        Destroy(GameObject.Find("textBoxChooseAtt"));
+        Destroy(GameObject.Find("ChooseTextGO"));
+        Debug.Log("playersReady3");
+
+
+    }
 
 
 }

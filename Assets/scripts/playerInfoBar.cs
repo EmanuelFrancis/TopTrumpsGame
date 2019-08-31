@@ -77,7 +77,42 @@ public class playerInfoBar : MonoBehaviour {
         rectTransform.sizeDelta = new Vector2(150, 50);
 
 
+        findPlaceInDeck();
 
+        GameObject noCardsInHandTitle = new GameObject();
+        noCardsInHandTitle.name = "noCardsInHandTitle";
+        noCardsInHandTitle.transform.SetParent(playerInfoBar.P1Bar.transform);
+        noCardsInHandTitle.AddComponent<Text>();
+        noCardsInHandTitle.AddComponent<Canvas>();
+
+        Text noCardsInHandTitleText = noCardsInHandTitle.GetComponent<Text>();
+        noCardsInHandTitleText.font = arial;
+        
+        noCardsInHandTitleText.text = "Cards In Hand";
+        noCardsInHandTitleText.fontSize = 20;
+        noCardsInHandTitleText.color = Color.black;
+        noCardsInHandTitleText.alignment = TextAnchor.MiddleCenter;
+
+        rectTransform = noCardsInHandTitleText.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(-102, 40, 0);
+        rectTransform.sizeDelta = new Vector2(222, 50);
+
+        GameObject noCardsInHand = new GameObject();
+        noCardsInHand.name = "no cards in hand";
+        noCardsInHand.transform.SetParent(playerInfoBar.P1Bar.transform);
+        noCardsInHand.AddComponent<Text>();
+        noCardsInHand.AddComponent<Canvas>();
+
+        Text noCardsLeft = noCardsInHand.GetComponent<Text>();
+        noCardsLeft.font = arial;
+        noCardsLeft.text = (controller.p1SizeOfHand.ToString());
+        noCardsLeft.fontSize = 30;
+        noCardsLeft.color = Color.black;
+        noCardsLeft.alignment = TextAnchor.MiddleCenter;
+
+        rectTransform = noCardsLeft.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(-100, -11, 0);
+        rectTransform.sizeDelta = new Vector2(80, 50);
 
 
 
@@ -120,6 +155,19 @@ public class playerInfoBar : MonoBehaviour {
 		
 	}
 
+    void findPlaceInDeck()
+    {
 
+        for (int x = 0; x < controller.p1SizeOfHand; x++)
+        {
+            //    Debug.Log(x + "is pos in Array");
+            if (playerHands.player1[x] == controller.p1ActiveCard)
+            {
+                placeInDeck = x + 1;
+                //     Debug.Log(placeInDeck + "placeinDeck");
+                return;
+            }
+        }
+    }
 
 }

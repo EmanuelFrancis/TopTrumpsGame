@@ -6,11 +6,11 @@ public class roundEnd : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+ 
         Debug.Log("round end");
-        Destroy(controller.game.GetComponent<game>());
-        destroyObjects();
-        controller.game.AddComponent<game>();
+        
+        controller.game.AddComponent<winnerScreen>();
+ 
     }
 	
 	// Update is called once per frame

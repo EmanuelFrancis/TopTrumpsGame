@@ -82,9 +82,7 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
         //    Destroy(GameObject.Find("ChosenValue"));
         //   Destroy(GameObject.Find("no cards in hand"));
         //    Destroy(GameObject.Find("placeInDeck"));
-        GameObject updateBars2 = new GameObject();
-        updateBars2.name = "update bars2";
-        updateBars2.AddComponent<playerInfoValues>();
+
 
 
         // WinnerGraphic();
@@ -99,6 +97,10 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
         Debug.Log(eventData.pointerPress + "was clicked");
 
         controller.P1mainCard.AddComponent<compare>();
+
+        GameObject updateBars2 = new GameObject();
+        updateBars2.name = "update bars2";
+        updateBars2.AddComponent<playerInfoValues>();
         //  Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
     }
     
