@@ -21,6 +21,8 @@ public class playerInfoValues : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        Debug.Log("loadPlayerInfoValuesScript started");
+
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
         //   Canvas canvas1 = controller.GameBG.GetComponent<Canvas>();

@@ -84,11 +84,11 @@ public class loadPlayer1Card : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        Debug.Log("loadPlayer1CardScript started");
         //     controller.ActivePlayer = 1;
 
         /* Create a RectTransform to hold position, size, anchor and pivot information for the card elements */
-   //     RectTransform rectTransform;
+        //     RectTransform rectTransform;
         Font arial;   /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");  /* Set the font type to the font object*/
 

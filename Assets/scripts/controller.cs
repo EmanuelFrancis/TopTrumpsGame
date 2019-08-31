@@ -11,7 +11,7 @@ public class controller : MonoBehaviour
     public static int totalCards = 20;  /*SET NUMBER OF TOTAL CARDS */
     public static int noOfPlayers = 2;  /*SET NUMBER OF PLAYERS HERE */
     private int y = 1;
-    public static int rounds = 1;
+   // public static int rounds = 1;
 
     RectTransform rectTransform;
 
@@ -52,6 +52,8 @@ public class controller : MonoBehaviour
     public static List<string> playersInGame = new List<string>(); /* Holds the names of instanced players */
     public static List<string> eliminatedPlayers = new List<string>();
 
+    public static int gameWinner = 0;
+    public static int rounds = 1;
 
     public static int winner = 0;
     public static int attacker;
@@ -71,6 +73,8 @@ public class controller : MonoBehaviour
     public static GameObject P1mainCard;
     public static GameObject P2mainCard;
 
+    public static GameObject game;
+
     public static bool confirmRoundOver = false;
 
     public Color32 winColour = new Color32(3, 252, 40, 255);
@@ -81,7 +85,7 @@ public class controller : MonoBehaviour
     void Start()
     {
 
-        StartCoroutine(waitforKwyDown());
+      //  StartCoroutine(waitforKwyDown());
 
         /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
@@ -94,21 +98,16 @@ public class controller : MonoBehaviour
 
         assignCards(); /* calls method to deal cards evenly between the players in game */
 
-     //  popup = new GameObject(); /* Creates a parent humanPlayer GO */
-     //   popup.name = "PopupGO";  /* Names the parent humanPlayer GO */
-    //    popup.AddComponent<Canvas>();
-    //    popup.AddComponent<CanvasScaler>();
-    //    popup.AddComponent<GraphicRaycaster>();
-      //  popup.AddComponent<playerInfoBar>();
-
-        GameBG = new GameObject(); /* Creates a parent humanPlayer GO */
-        GameBG.name = "PlayerBarGO";  /* Names the parent humanPlayer GO */
-        GameBG.AddComponent<Canvas>();
-        GameBG.AddComponent<CanvasScaler>();
-       GameBG.AddComponent<GraphicRaycaster>();
-        GameBG.AddComponent<playerInfoBar>();
+        //  popup = new GameObject(); /* Creates a parent humanPlayer GO */
+        //   popup.name = "PopupGO";  /* Names the parent humanPlayer GO */
+        //    popup.AddComponent<Canvas>();
+        //    popup.AddComponent<CanvasScaler>();
+        //    popup.AddComponent<GraphicRaycaster>();
+        //  popup.AddComponent<playerInfoBar>();
 
 
+
+        game = new GameObject();
 
         humanPlayer = new GameObject(); /* Creates a parent humanPlayer GO */
         humanPlayer.name = "PlayerParentGameObject";  /* Names the parent humanPlayer GO */
@@ -140,8 +139,9 @@ public class controller : MonoBehaviour
         ActiveplayerInstance.name = "ActivePlayer"; /* Sets the name of the p1 instance to whatever has been specified at Player1Name */
 
 
-
-        game();
+        createInfoBars();
+        game.AddComponent<game>();
+      //  game();
 
 
     } 
@@ -179,136 +179,112 @@ public class controller : MonoBehaviour
             Destroy(GameObject.Find("P2SpriteBG"));       
         }
 
-        if(attPicked == true)
-        {
-            attPicked = false;
-            P1mainCard.AddComponent<compare>();
-            Debug.Log("winner player" + controller.winner);
-            P1mainCard.AddComponent<winnerScreen>();
-            waitforKwyDown2();
+  //      if(attPicked == true)
+  //      {
+  //          attPicked = false;
+  //          P1mainCard.AddComponent<compare>();
+  //          Debug.Log("winner player" + controller.winner);
+  //          P1mainCard.AddComponent<winnerScreen>();
+            //  waitforKwyDown2();
+        //    rounds++;
+//
+ //           controller newRound = FindObjectOfType<controller>();
+  //          newRound.game();
 
-        }
+  //      }
 
     }
 
     //*FUNCTIONS*//
-
+/*
  public   void game()
     {
+        Debug.Log("gameMethod started");
 
+        rounds = 1;
 
-        if (rounds == 1)
-        {
+  
 
-            dealCards();
-            GameObject updateBars = new GameObject();
-            updateBars.name = "update bars";
-            updateBars.AddComponent<playerInfoValues>();
-        }
-        else if (rounds > 1)
-        {
+        dealCards();
+        GameObject updateBars = new GameObject();
+        updateBars.name = "update bars";
+        updateBars.GetComponent<playerInfoValues>();
 
-            destroyObjects();
-        }
-        //     if (confirmRoundOver == true)
-        //     {
-
-        gameOverCheck();
-
-
-
-        roundBegin();
-        //       }
-        //        roundBegin();
-
-
-
-        //
-        //     if (playersReady == 1)
-        //    {
-        //         roundBegin();
-        //      }
-
-
-
-
-      //  rounds++;
-
-
-
-
-        //  return;
+       
+        for(int x = gameWinner; x == 0; x++)
+                {               
+                    Debug.Log("game winner " + winner);
+                    roundBegin();
+                    rounds++;        
+                }
+        
+        Debug.Log("gameMethod end");
     }
-
-
+*/
+/*
    public void roundBegin()
     {
-        confirmRoundOver = false;
-        ChooseWhosTurn();
-        Debug.Log("Round " + rounds);
 
-
-        p1pickCard();
-
-        P1mainCard = new GameObject();
-        P1mainCard.name = "p1MainCard";
-
-        P1mainCard.AddComponent<loadPlayer1Card>();
-
-        //  ActivePlayer = 2;
-
-
-        //Pick Random Card
-        p2pickCard();
-
-        P2mainCard = new GameObject();
-        P2mainCard.name = "p2MainCard";
-        //   P2mainCard.transform.parent = playerInstance02.transform;
-        P2mainCard.AddComponent<loadPlayer2Card>();
-
-
-        Debug.Log("Player" + attacker +"turn");
-
-
-        GameObject popupMenu = new GameObject();
-        popupMenu.name = "popupMenu";
-        popupMenu.AddComponent<loadPopup>();
-     //   SelectAttGraphic();
-    //    Debug.Log("grafic");
-        waitforKwyDown();
-
-        //     pickAttribute();
-      //  P1mainCard.AddComponent<compare>();
-
-
-
-
-      //  rounds++;
-
-
-      //  destroyObjects();
-
-    }
-
-
-    //Create player ID
-    /*
-    void createID()
-    {
-        for (int x = 0; x <= noOfPlayers; x++) //if x(current players) is less than number of players, current players ++
+        if (rounds>1)
         {
-            int ID;
-
-            //create playerID
-            for (y = y; y <= noOfPlayers; y++)
-            {
-                ID = y;
-                IDs.Add(ID);
-                playersInGame.Add(ID);
-            }
+            destroyObjects();
         }
+
+        Debug.Log("roundBeginMethod started");
+
+        p1SizeOfHand = playerHands.player1.Count;
+        p2SizeOfHand = playerHands.player2.Count;
+
+
+        Debug.Log("p1 hand " + p1SizeOfHand);
+        Debug.Log("p2 hand " + p2SizeOfHand);
+
+        if (p1SizeOfHand == 0)
+        {
+            gameWinner = 2;
+        }
+        else if (p2SizeOfHand == 0)
+        {
+            gameWinner = 1;
+        }
+        else
+        {
+            ChooseWhosTurn();
+
+            Debug.Log("Player" + attacker + "turn");
+
+                     p1pickCard();
+
+                     P1mainCard = new GameObject();
+                     P1mainCard.name = "p1MainCard";
+                     P1mainCard.AddComponent<loadPlayer1Card>();
+
+                     p2pickCard();
+
+                     P2mainCard = new GameObject();
+                     P2mainCard.name = "p2MainCard";
+                     P2mainCard.AddComponent<loadPlayer2Card>();
+
+                     GameObject popupMenu = new GameObject();
+                     popupMenu.name = "popupMenu";
+                     popupMenu.AddComponent<loadPopup>();
+
+            Debug.Log(attPicked);
+
+          //  if (attPicked == true)
+           //          {
+          // //              P1mainCard.AddComponent<compare>();
+          //           }
+
+                       
+               
+        }
+
     }
+
     */
+
+   
 
     //Create player name
     void createName()
@@ -347,52 +323,7 @@ public class controller : MonoBehaviour
 
 
 
-    //Deal cards to each player one at a time
-    void dealCards()
-    {
-        int cardsToDeal = totalCards; //gets the amount of cards available for dealing set in controller.cs
-        int c = 1;  //set starting amount of cards already dealt, updated ++ after each card is given
-
-        for (c = c; c < cardsToDeal;) //loops through the amount of cards left to deal
-        {
-
-
-
-            for (int x = 1; x <= noOfPlayers; x++) //loops through the number of players so a card can be dealt to each
-            {
-
-                int dealCard = c;
-                if (x == 1)
-                {
-                    playerHands.player1.Add(dealCard); //stores value (card ID) into players hand in playerHands.cs
-
-                    c++;
-
-                }
-                else if (x == 2 && c <= cardsToDeal)
-                {
-                    playerHands.player2.Add(dealCard);
-
-                    c++;
-   
-                }
-                else if (x == 3 && c <= cardsToDeal)
-                {
-                    playerHands.player3.Add(dealCard);
-
-                    c++;
-
-                }
-                else if (x == 4 && c <= cardsToDeal)
-                {
-                    playerHands.player4.Add(dealCard);
-
-                    c++;
-
-                }
-            }
-        }
-    }
+ 
 
     void ChooseWhosTurn()
     {
@@ -439,7 +370,7 @@ public class controller : MonoBehaviour
 
         int pickedCard;
 
-        p1SizeOfHand = playerHands.player1.Count;   /*count how many cards player has*/
+   //     p1SizeOfHand = playerHands.player1.Count;   /*count how many cards player has*/
 
         if (rounds == 1) /* If its the first round of the game select a random card to start with */
         {
@@ -482,7 +413,7 @@ public class controller : MonoBehaviour
         int pickedCard;
 
         //count how many cards player has
-        p2SizeOfHand = playerHands.player2.Count;
+     //   p2SizeOfHand = playerHands.player2.Count;
 
 
         if (rounds == 1)
@@ -672,29 +603,55 @@ void createCards()
 
     void destroyObjects()
     {
-      //  Destroy(GameObject.Find("update bars2"));
-      //  Destroy(GameObject.Find("ChosenAttr"));
-      //  Destroy(GameObject.Find("ChosenValue"));
-      //  Destroy(GameObject.Find("no cards in hand"));
-     //   Destroy(GameObject.Find("placeInDeck"));
-        Destroy(GameObject.Find("WinParent"));
-        Destroy(GameObject.Find("WinBox"));
+     //   Destroy(GameObject.Find("update bars2"));
+   //     Destroy(GameObject.Find("ChosenAttr"));
+    //    Destroy(GameObject.Find("ChosenValue"));
+   //     Destroy(GameObject.Find("Chosen2Attr"));
+    //    Destroy(GameObject.Find("Chosen2Value"));
+        //  Destroy(GameObject.Find("no cards in hand"));
+        //   Destroy(GameObject.Find("placeInDeck"));
+    //    Destroy(GameObject.Find("WinParent"));
+    //    Destroy(GameObject.Find("WinBox"));
         Destroy(GameObject.Find("p1MainCard"));
         Destroy(GameObject.Find("p2MainCard"));
 
         Destroy(GameObject.Find("P1ParentCard"));
         Destroy(GameObject.Find("P2ParentCard"));
 
-        Destroy(GameObject.Find("P2ParentCard"));
+   //     Destroy(GameObject.Find("P2ParentCard"));
         Destroy(GameObject.Find("P1imageSpriteInstance"));
         Destroy(GameObject.Find("P1SpriteParent"));
         Destroy(GameObject.Find("P2imageSpriteInstance"));
         Destroy(GameObject.Find("P2SpriteParent"));
+//
+    //    Destroy(GameObject.Find("P1imageBGSpriteInstance"));
+   //     Destroy(GameObject.Find("P1SpriteBG"));
+    //    Destroy(GameObject.Find("P2imageBGSpriteInstance"));
+    //    Destroy(GameObject.Find("P2SpriteBG"));
 
-        Destroy(GameObject.Find("P1imageBGSpriteInstance"));
-        Destroy(GameObject.Find("P1SpriteBG"));
-        Destroy(GameObject.Find("P2imageBGSpriteInstance"));
-        Destroy(GameObject.Find("P2SpriteBG"));
+   //     Destroy(GameObject.Find("p1MainCard"));
+   //     Destroy(GameObject.Find("p2MainCard"));
+
+    //    Destroy(GameObject.Find("winnerBGParent"));
+    //    Destroy(GameObject.Find("textBoxWin"));
+     //   Destroy(GameObject.Find("HUMANWinTextGO"));
+
+      //  Destroy(GameObject.Find("P1Bar"));
+      //  Destroy(GameObject.Find("P2Bar"));
+     //   Destroy(GameObject.Find("PlayerBarParent"));
+     //   Destroy(GameObject.Find("HUMANPLAYERNAME"));
+
+
+    }
+
+    void createInfoBars()
+    {
+        GameBG = new GameObject(); /* Creates a parent humanPlayer GO */
+        GameBG.name = "PlayerBarGO";  /* Names the parent humanPlayer GO */
+        GameBG.AddComponent<Canvas>();
+        GameBG.AddComponent<CanvasScaler>();
+        GameBG.AddComponent<GraphicRaycaster>();
+        GameBG.AddComponent<playerInfoBar>();
     }
 
     IEnumerator waitforKwyDown()
@@ -731,9 +688,9 @@ void createCards()
         }
 
         controller newRound = FindObjectOfType<controller>();
-        newRound.game();
-        //  controller.roundBegin();
-        Debug.Log("playersReady3");
+      //  newRound.game();
+       
+        Debug.Log("roundOver");
 
 
     }

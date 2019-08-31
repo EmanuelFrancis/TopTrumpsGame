@@ -170,6 +170,8 @@ public class winnerScreen : MonoBehaviour {
         rectTransform = WinText.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector3(0, 0, 0);
         rectTransform.sizeDelta = new Vector2(1000, 1000);
+
+      //  controller.rounds++;
     
 }
 	

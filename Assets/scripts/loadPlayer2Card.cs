@@ -55,7 +55,7 @@ public class loadPlayer2Card : MonoBehaviour
 
         //controller.ActivePlayer = 2;
         //    Debug.Log(SelectedCardId);
-
+        Debug.Log("loadPlayer2CardScript started");
         // Sprite sprite;
         RectTransform rectTransform;
         Font arial;

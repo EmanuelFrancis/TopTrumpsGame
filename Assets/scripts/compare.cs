@@ -37,8 +37,8 @@ public class compare : MonoBehaviour {
         /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 
-        
 
+        Debug.Log("compareScript started");
         Debug.Log(controller.pickedAttribute);
         Debug.Log("rounds" + controller.rounds);
 
@@ -107,10 +107,10 @@ public class compare : MonoBehaviour {
           //  roundOver = true;
          //   waitforKwyDown();  //works!!!
         }
-       
+
         // controller.roundBegin();
 
-
+        controller.game.AddComponent<roundEnd>();
 
         //  GameObject winnerBG = new GameObject(); /* Creates a parent humanPlayer GO */
 

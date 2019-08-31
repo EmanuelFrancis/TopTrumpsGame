@@ -40,7 +40,7 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
         public void OnPointerUp(PointerEventData eventData)
     {
        // loadPlayer1Card.attributesBoxColour = 3;
-        StartCoroutine(waitforKwyDown());
+      //  StartCoroutine(waitforKwyDown());
         //  loadPlayer1Card.attributesBoxColour = 0;
   
        // Text clickValue = eventData.pointerPress.GetComponent<Text>();
@@ -72,14 +72,16 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
             controller.pickedAttribute = 5;
         }
 
+   
+
 
         //  controller.P1mainCard.AddComponent<compare>();
 
-        Destroy(GameObject.Find("update bars2"));
-        Destroy(GameObject.Find("ChosenAttr"));
-        Destroy(GameObject.Find("ChosenValue"));
-       Destroy(GameObject.Find("no cards in hand"));
-        Destroy(GameObject.Find("placeInDeck"));
+        //   Destroy(GameObject.Find("update bars2"));
+        //   Destroy(GameObject.Find("ChosenAttr"));
+        //    Destroy(GameObject.Find("ChosenValue"));
+        //   Destroy(GameObject.Find("no cards in hand"));
+        //    Destroy(GameObject.Find("placeInDeck"));
         GameObject updateBars2 = new GameObject();
         updateBars2.name = "update bars2";
         updateBars2.AddComponent<playerInfoValues>();
@@ -95,28 +97,13 @@ public class FindSelectedAttribute : MonoBehaviour, IPointerUpHandler
        
 
         Debug.Log(eventData.pointerPress + "was clicked");
-        
-        controller.attPicked = true;
+
+        controller.P1mainCard.AddComponent<compare>();
         //  Debug.Log(loadPlayer1Card.attributesBoxColour + "ColourValue");
     }
     
 
-    IEnumerator waitforKwyDown()
-    {
-        while (!Input.GetKeyDown("y"))
-        {
-       
-            
-            yield return null;
-            
-           
-        }
- 
-        controller newRound = FindObjectOfType<controller>();
-        newRound.game();
-        //  controller.roundBegin();
-        Debug.Log("playersReady3");
-    }
+
 
 
     void destroyObjects()

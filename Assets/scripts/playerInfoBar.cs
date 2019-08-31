@@ -111,7 +111,7 @@ public class playerInfoBar : MonoBehaviour {
         //      Debug.Log("P2 Bar Created");
 
 
-
+ 
 
     }
 
