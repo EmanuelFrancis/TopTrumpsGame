@@ -92,9 +92,9 @@ public class controller : MonoBehaviour
 
         //  StartCoroutine(timeWait());
 
-        //   GameObject StartMenu = new GameObject();
-        //   StartMenu.name = "Start Menu";
-        //   StartMenu.AddComponent<startMenu>();
+       //    GameObject StartMenu = new GameObject();
+       //    StartMenu.name = "Start Menu";
+      //     StartMenu.AddComponent<startMenu>();
 
         assignCards(); /* calls method to deal cards evenly between the players in game */
 

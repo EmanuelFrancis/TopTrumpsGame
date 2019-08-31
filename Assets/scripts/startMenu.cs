@@ -25,7 +25,7 @@ public class startMenu : MonoBehaviour {
 
         /* Create a Font object */
         arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-
+        StartCoroutine(waitforyDown());
 
         //START MENU//
         GameObject MenuBG = new GameObject();
@@ -93,9 +93,10 @@ public class startMenu : MonoBehaviour {
     void Update()
     {
 
-        if (Input.GetKeyDown("n"))
+        if (Input.GetMouseButtonDown(0))
         {
-
+            Destroy(GameObject.Find("MenuBG"));
+            Destroy(GameObject.Find("Menu"));
             Destroy(GameObject.Find("StartMenu"));
             Destroy(GameObject.Find("MenuTextParent"));
             createGameEnv();
@@ -124,7 +125,7 @@ public class startMenu : MonoBehaviour {
 
         //PLAYER 1 MENU//
 
-
+      // waitforyDown();
 
 
     }
@@ -135,5 +136,21 @@ public class startMenu : MonoBehaviour {
         controller.name = "controller";
         controller.AddComponent<controller>();
         controller.AddComponent<humanPlayerClass>();
+    }
+
+    IEnumerator waitforyDown()
+    {
+        while (!Input.GetMouseButtonDown(0))
+        {
+            //     Debug.Log("null");
+
+            yield return null;
+
+
+        }
+
+       yield return null;
+
+
     }
 }

@@ -65,8 +65,8 @@ public class loadPopup : MonoBehaviour {
             TextBoxPhysics.gravityScale = 0;
 
             rectTransform = textBoxChooseAtt.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(0, 0, 10);
-            rectTransform.sizeDelta = new Vector2(500, 300);
+            rectTransform.localPosition = new Vector3(0, 365, 10);
+            rectTransform.sizeDelta = new Vector2(500, 200);
 
 
             GameObject WinTextGO = new GameObject();

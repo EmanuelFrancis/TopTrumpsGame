@@ -265,7 +265,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347001224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbc53977eef676841a05caac83134412, type: 3}
   m_Name: 
@@ -276,15 +276,20 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347001224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3053e40c6c1ad07439563c43659b519b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   activeCard: {fileID: 0}
+  popup: {fileID: 0}
+  textBoxChooseAttText: {fileID: 0}
   player1sActiveCard: {fileID: 0}
   player2sActiveCard: {fileID: 0}
   Player1: {fileID: 0}
+  winColour:
+    serializedVersion: 2
+    rgba: 4280876035
 --- !u!4 &347001227
 Transform:
   m_ObjectHideFlags: 0
@@ -304,7 +309,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347001224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c46de19553bb0c543bfbed3f0bc99a1e, type: 3}
   m_Name: 
