@@ -214,7 +214,7 @@ public class winnerScreen : MonoBehaviour {
 
     void destroyObjects()
     {
-        //   Destroy(GameObject.Find("update bars2"));
+           Destroy(GameObject.Find("update bars2"));
           //   Destroy(GameObject.Find("ChosenAttr"));
          //   Destroy(GameObject.Find("ChosenValue"));
           //   Destroy(GameObject.Find("Chosen2Attr"));
@@ -235,10 +235,10 @@ public class winnerScreen : MonoBehaviour {
         Destroy(GameObject.Find("P2imageSpriteInstance"));
         Destroy(GameObject.Find("P2SpriteParent"));
         //
-        //    Destroy(GameObject.Find("P1imageBGSpriteInstance"));
-        //     Destroy(GameObject.Find("P1SpriteBG"));
-        //    Destroy(GameObject.Find("P2imageBGSpriteInstance"));
-        //    Destroy(GameObject.Find("P2SpriteBG"));
+            Destroy(GameObject.Find("P1imageBGSpriteInstance"));
+             Destroy(GameObject.Find("P1SpriteBG"));
+            Destroy(GameObject.Find("P2imageBGSpriteInstance"));
+            Destroy(GameObject.Find("P2SpriteBG"));
 
         //     Destroy(GameObject.Find("p1MainCard"));
         //     Destroy(GameObject.Find("p2MainCard"));
@@ -252,6 +252,7 @@ public class winnerScreen : MonoBehaviour {
         //   Destroy(GameObject.Find("PlayerBarParent"));
        //    Destroy(GameObject.Find("HUMANPLAYERNAME"));
         Destroy(GameObject.Find("HUMANroundNo"));
+        Destroy(GameObject.Find("popupMenu"));
 
 
     }
