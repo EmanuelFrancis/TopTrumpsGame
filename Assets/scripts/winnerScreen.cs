@@ -29,6 +29,14 @@ public class winnerScreen : MonoBehaviour {
 
         StartCoroutine(waitforyDown());
 
+
+        if (controller.p1SizeOfHand == 0 || controller.p2SizeOfHand==0) {
+
+            controller.game.AddComponent<gameOver>();
+
+        }
+
+
         GameObject winnerBG = new GameObject();
         winnerBG.name = "winnerBGParent";
         winnerBG.transform.SetParent(controller.GameBG.transform);
@@ -183,7 +191,7 @@ public class winnerScreen : MonoBehaviour {
 	}
     IEnumerator waitforyDown()
     {
-        while (!Input.GetKeyDown("y"))
+        while (!Input.GetMouseButtonDown(0))
         {
             //     Debug.Log("null");
 

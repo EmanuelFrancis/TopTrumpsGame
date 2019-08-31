@@ -13,7 +13,9 @@ public class game : MonoBehaviour {
 
         Debug.Log("gameMethod started");
 
-      //  controller.rounds = 1;
+        //  controller.rounds = 1;
+
+       
 
 
         if (controller.rounds == 1)

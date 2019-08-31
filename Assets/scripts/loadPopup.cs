@@ -106,8 +106,9 @@ public class loadPopup : MonoBehaviour {
 
     IEnumerator waitforKwyDown()
     {
-        while (!Input.GetKeyDown("y"))
-        {
+        //while (!Input.GetKeyDown("y"))
+            while (!Input.GetMouseButtonDown(0))
+            {
             //     Debug.Log("null");
 
             yield return null;
